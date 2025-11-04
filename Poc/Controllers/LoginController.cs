@@ -1,7 +1,4 @@
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Poc.Models;
 using Poc.Services.Interfaces;
 
@@ -29,6 +26,7 @@ public class LoginController : Controller
     public async Task<IActionResult> Registrar(UsuarioModel usuario)
     {
         usuario.HorarioAcesso = DateTime.Now;
-        return Ok(await _usuarioService.Inserir(usuario));
+        await _usuarioService.Inserir(usuario);
+        return RedirectToAction("Index");
     }
 }
