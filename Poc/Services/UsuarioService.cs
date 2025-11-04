@@ -9,9 +9,23 @@ namespace Poc.Services;
 public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioService
 {
     private readonly IUsuarioRepository _usuarioRepository;
-    public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper)
+    private readonly IValidacaoService _validacaoService;
+    public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper, IValidacaoService validacaoService)
         : base(usuarioRepository, mapper)
     {
         _usuarioRepository = usuarioRepository;
+        _validacaoService = validacaoService;
+    }
+
+    public async Task<ValidacaoModel> Registrar(UsuarioModel usuario)
+    {
+        var validar = await _validacaoService.ValidarRegistroUsuario(usuario);
+        if (!validar.Sucesso) return validar;
+
+        else
+        {
+            await Inserir(usuario);
+            return validar;
+        }
     }
 }

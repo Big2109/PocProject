@@ -26,7 +26,7 @@ public class LoginController : Controller
     public async Task<IActionResult> Registrar(UsuarioModel usuario)
     {
         usuario.HorarioAcesso = DateTime.Now;
-        await _usuarioService.Inserir(usuario);
+        await _usuarioService.Registrar(usuario);
         return RedirectToAction("Index");
     }
 }

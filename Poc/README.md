@@ -64,7 +64,8 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |-- Interfaces
 |   |   |-- IBaseService.cs
 |   |   |-- IClienteService.cs
-|   |   `-- IUsuarioService.cs
+|   |   |-- IUsuarioService.cs
+|   |   `-- IValidacaoService.cs
 |   `-- UsuarioService.cs
 |-- Settings
 |   `-- AppSettings.cs
@@ -169,7 +170,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
             |   `-- jquery.validate.unobtrusive.min.js
             `-- LICENSE.txt
 
-33 directories, 107 files
+33 directories, 108 files
 ```
 <!-- END STRUCTURE -->
 ---
