@@ -27,5 +27,25 @@ public static class WebApplicationBuilderExtensions
 
         IMapper mapper = mapperConfig.CreateMapper();
         builder.Services.AddSingleton(mapper);
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowVueApp",
+                policy => policy
+                    .WithOrigins("http://localhost:5173")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+        });
+    }
+
+    public static void ConfigureVue(WebApplicationBuilder builder)
+    {
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowVueApp",
+                policy => policy
+                    .WithOrigins("http://localhost:5173")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+        });
     }
 }

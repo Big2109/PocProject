@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="body">
+    <div class="col-12">
+        <div class="row py-4">
+            <div class="offset-4 col-4 card">
+                <span>Login</span>
+                <input>
+                <span>Senha</span>
+                <input>
+            </div>
+        </div>
+        <div class="row text-center py-4">
+            <h4>Novo Usuário?</h4>
+            <a asp-area="" asp-controller="Login" asp-action="Registrar">Registrar-se</a>
+        </div>
+    </div>
+</div>
+@* <div id="app">
+    <h1>Lista de Clientes</h1>
+
+    <!-- Botão para listar clientes -->
+    <button class="btn btn-primary mb-3" @@click="listarClientes">
+        Listar Clientes
+    </button>
+
+    <ul>
+        <li v-for="p in clientes" :key="p.guidCliente">
+            {{ p.nome }}
+        </li>
+    </ul>
+</div> *@
+
+@section Scripts {
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    @* <script src="~/js/index.js" asp-append-version="true"></script> *@
+}

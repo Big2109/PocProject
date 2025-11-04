@@ -35,11 +35,11 @@ public class HomeController : Controller
     [Route("clientes/listar")]
     public async Task<IActionResult> ListarClientes()
     {
-        return Json(await _clienteService.Listar());
+        return Ok(await _clienteService.Listar());
     }
     [HttpPost, Route("clientes/inserir")]
     public async Task<IActionResult> InserirCliente([FromBody] ClienteModel cliente)
     {
-        return Json(await _clienteService.Inserir(cliente));
+        return Ok(await _clienteService.Inserir(cliente));
     }
 }

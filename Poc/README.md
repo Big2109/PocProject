@@ -34,7 +34,8 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |-- AutoMapper
 |   `-- PocProfile.cs
 |-- Controllers
-|   `-- HomeController.cs
+|   |-- HomeController.cs
+|   `-- LoginController.cs
 |-- Docker
 |-- Extensions
 |   |-- ServiceCollectionExtensions.cs
@@ -43,7 +44,8 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |-- LICENSE
 |-- Models
 |   |-- ClienteModel.cs
-|   `-- ErrorViewModel.cs
+|   |-- ErrorViewModel.cs
+|   `-- UsuarioModel.cs
 |-- Poc.csproj
 |-- Program.cs
 |-- Properties
@@ -51,15 +53,19 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |-- Repositories
 |   |-- BaseRepository.cs
 |   |-- ClienteRepository.cs
-|   `-- Interfaces
-|       |-- IBaseRepository.cs
-|       `-- IClienteRepository.cs
+|   |-- Interfaces
+|   |   |-- IBaseRepository.cs
+|   |   |-- IClienteRepository.cs
+|   |   `-- IUsuarioRepository.cs
+|   `-- UsuarioRepository.cs
 |-- Services
 |   |-- BaseService.cs
 |   |-- ClienteService.cs
-|   `-- Interfaces
-|       |-- IBaseService.cs
-|       `-- IClienteService.cs
+|   |-- Interfaces
+|   |   |-- IBaseService.cs
+|   |   |-- IClienteService.cs
+|   |   `-- IUsuarioService.cs
+|   `-- UsuarioService.cs
 |-- Settings
 |   `-- AppSettings.cs
 |-- SQL
@@ -68,12 +74,16 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |-- Procedures
 |   `-- Tables
 |       |-- Acesso.sql
-|       `-- Cliente.sql
+|       |-- Cliente.sql
+|       `-- Usuario.sql
 |-- update-readme.sh
 |-- Views
 |   |-- Home
 |   |   |-- Index.cshtml
 |   |   `-- Privacy.cshtml
+|   |-- Login
+|   |   |-- Index.cshtml
+|   |   `-- Registrar.cshtml
 |   |-- Shared
 |   |   |-- Error.cshtml
 |   |   |-- _Layout.cshtml
@@ -82,11 +92,11 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   `-- _ViewStart.cshtml
 `-- wwwroot
     |-- css
-    |   |-- site.css
     |   `-- styles.css
     |-- favicon.ico
     |-- js
-    |   `-- site.js
+    |   |-- functions.js
+    |   `-- index.js
     `-- lib
         |-- bootstrap
         |   |-- dist
@@ -159,7 +169,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
             |   `-- jquery.validate.unobtrusive.min.js
             `-- LICENSE.txt
 
-32 directories, 98 files
+33 directories, 107 files
 ```
 <!-- END STRUCTURE -->
 ---

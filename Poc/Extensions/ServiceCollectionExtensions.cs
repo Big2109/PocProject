@@ -15,7 +15,17 @@ public static class ServiceCollectionExtensions
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped<IClienteService, ClienteService>();
+        services.AddScoped<IUsuarioService, UsuarioService>();
+        return services;
+    }
+
+    public static IServiceCollection RegisterRepositories(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<Context>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
         services.AddScoped<IClienteRepository, ClienteRepository>();
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         return services;
     }
 }

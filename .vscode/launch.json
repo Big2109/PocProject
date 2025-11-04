@@ -6,9 +6,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "Poc",
-            "program": "${workspaceFolder}/PocProject/bin/Debug/net8.0/Poc.dll",
+            "program": "${workspaceFolder}/Poc/bin/Debug/net8.0/Poc.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/PocProject",
+            "cwd": "${workspaceFolder}/Poc",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",

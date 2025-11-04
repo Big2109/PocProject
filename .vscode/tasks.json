@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/PocProject/Poc.csproj"
+                "${workspaceFolder}/Poc/Poc.csproj"
             ],
             "problemMatcher": "$msCompile",
             "group": {
