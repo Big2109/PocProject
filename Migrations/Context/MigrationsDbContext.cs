@@ -22,5 +22,28 @@ public class Context : DbContext
                   .HasMaxLength(1000)
                   .IsRequired();
         });
+
+        modelBuilder.Entity<Usuario>(entity =>
+        {
+            entity.ToTable("Usuario");
+            entity.HasKey(e => e.GuidUsuario);
+            entity.Property(e => e.GuidUsuario)
+            .HasColumnType("uniqueidentifier");
+            entity.Property(e => e.Nome)
+                  .HasMaxLength(1000)
+                  .IsRequired();
+            entity.Property(e => e.NomeUsuario)
+                  .HasMaxLength(1000)
+                  .IsRequired();
+            entity.Property(e => e.Email)
+                  .HasMaxLength(1000)
+                  .IsRequired();
+            entity.Property(e => e.Senha)
+                .HasMaxLength(1000)
+                .IsRequired();
+            entity.Property(e => e.HorarioAcesso)
+            .HasColumnType("datetime2")
+                .IsRequired();
+        });
     }
 }
