@@ -1,0 +1,2 @@
+# PocProject
+Um projeto ASP.NET Core MVC desenvolvido para servir como portfólio pessoal, com integração a um banco de dados SQL Server em container Docker.   O objetivo é demonstrar habilidades em desenvolvimento web utilizando .NET 8+, Entity Framework Core e boas práticas de arquitetura MVC.
