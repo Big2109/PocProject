@@ -40,7 +40,6 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |-- ServiceCollectionExtensions.cs
 |   |-- WebApplicationBuilderExtensions.cs
 |   `-- WebApplicattionExtensions.cs
-|-- .gitignore
 |-- LICENSE
 |-- Models
 |   |-- ClienteModel.cs
@@ -83,13 +82,10 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   `-- _ViewStart.cshtml
 `-- wwwroot
     |-- css
-    |   |-- app.css
     |   |-- site.css
     |   `-- styles.css
     |-- favicon.ico
-    |-- index.html
     |-- js
-    |   |-- app.js
     |   `-- site.js
     `-- lib
         |-- bootstrap
@@ -163,7 +159,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
             |   `-- jquery.validate.unobtrusive.min.js
             `-- LICENSE.txt
 
-32 directories, 102 files
+32 directories, 98 files
 ```
 <!-- END STRUCTURE -->
 ---
