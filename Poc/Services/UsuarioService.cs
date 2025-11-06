@@ -31,16 +31,7 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
             return validar;
         }
 
-        else
-        {
-            await _acessoService.Inserir(new AcessoModel
-            {
-                GuidUsuario = login.GuidUsuario,
-                HorarioAcesso = DateTime.Now
-            });
-
-            return validar;
-        }
+        else return validar;
     }
     public async Task<ValidacaoModel> Registrar(UsuarioModel novoUsuario)
     {

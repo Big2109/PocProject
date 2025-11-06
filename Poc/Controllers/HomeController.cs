@@ -7,12 +7,9 @@ namespace Poc.Controllers;
 
 public class HomeController : BaseController
 {
-    private readonly ILogger<HomeController> _logger;
     private readonly IClienteService _clienteService;
-
-    public HomeController(ILogger<HomeController> logger, IClienteService clienteService)
+    public HomeController(ILogger<HomeController> logger, IClienteService clienteService) : base(logger)
     {
-        _logger = logger;
         _clienteService = clienteService;
     }
 

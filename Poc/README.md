@@ -36,7 +36,8 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |-- Controllers
 |   |-- BaseController.cs
 |   |-- HomeController.cs
-|   `-- LoginController.cs
+|   |-- LoginController.cs
+|   `-- PocController.cs
 |-- Docker
 |-- Enums
 |   `-- Messages.cs
@@ -96,6 +97,8 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |-- Login
 |   |   |-- Index.cshtml
 |   |   `-- Registrar.cshtml
+|   |-- Poc
+|   |   `-- Index.cshtml
 |   |-- Shared
 |   |   |-- Error.cshtml
 |   |   |-- _FeedbackModal.cshtml
@@ -184,7 +187,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
             |   `-- jquery.validate.unobtrusive.min.js
             `-- LICENSE.txt
 
-36 directories, 119 files
+37 directories, 121 files
 ```
 <!-- END STRUCTURE -->
 ---

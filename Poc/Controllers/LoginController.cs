@@ -6,12 +6,9 @@ namespace Poc.Controllers;
 
 public class LoginController : BaseController
 {
-    private readonly ILogger<LoginController> _logger;
     private readonly IUsuarioService _usuarioService;
-
-    public LoginController(ILogger<LoginController> logger, IUsuarioService usuarioService)
+    public LoginController(ILogger<LoginController> logger, IUsuarioService usuarioService) : base(logger)
     {
-        _logger = logger;
         _usuarioService = usuarioService;
     }
     public IActionResult Index()
@@ -30,7 +27,7 @@ public class LoginController : BaseController
             return RedirectToAction("Index");
         }
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Poc");
     }
     public IActionResult Registrar()
     {
