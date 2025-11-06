@@ -55,4 +55,10 @@ public class LoginController : BaseController
         Sucesso("Usuário registrado com sucesso!");
         return RedirectToAction("Index");
     }
+
+    public async Task<IActionResult> Sair()
+    {
+        HttpContext.Session.Clear();
+        return RedirectToAction("Index", "Home");
+    }
 }

@@ -23,10 +23,10 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
         var validar = await _validacaoService.ValidarLoginUsuario(usuario);
         if (!validar.Sucesso) return validar;
 
-        var login = await _usuarioRepository.ObterLogin(_mapper.Map<Usuario>(usuario));
+        var login = await _usuarioRepository.ObterPorNomeUsuarioESenha(_mapper.Map<Usuario>(usuario));
         if (login == null)
         {
-            validar.Mensagem.Add("Usuário não localizado na base.");
+            validar.Mensagem.Add("Senha ou usuário incorreto(s).");
             validar.Sucesso = false;
             return validar;
         }
@@ -38,7 +38,7 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
         var validar = await _validacaoService.ValidarRegistroUsuario(novoUsuario);
         if (!validar.Sucesso) return validar;
 
-        var usuario = await _usuarioRepository.ObterLogin(_mapper.Map<Usuario>(novoUsuario));
+        var usuario = await _usuarioRepository.ObterPorNomeUsuario(_mapper.Map<Usuario>(novoUsuario));
         if (usuario != null)
         {
             validar.Sucesso = false;
