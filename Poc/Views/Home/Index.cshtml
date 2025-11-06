@@ -1,3 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+
+<div id="landing-content">
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1>Bem-vindo à nossa aplicação!</h1>
+            <p>Uma POC moderna com .NET e Vue.js. Explore nossos recursos abaixo.</p>
+        </div>
+    </section>
+</div>
+
+<script>
+    const { createApp } = Vue;
+
+    createApp({
+        data() {
+            return {
+                features: [
+                    { title: 'Login Seguro', description: 'Autenticação com validação na base de dados.' },
+                    { title: 'Gestão de Usuários', description: 'Controle completo de usuários e permissões.' },
+                    { title: 'Relatórios', description: 'Visualize relatórios em tempo real.' },
+                ]
+            };
+        },
+        methods: {
+            ctaClick() {
+                alert("Você clicou em 'Saiba Mais'!");
+            }
+        }
+    }).mount("#landing-content");
+</script>

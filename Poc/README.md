@@ -111,10 +111,11 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |   `-- styles.css
     |-- favicon.ico
     |-- js
-    |   |-- functions.js
-    |   |-- index.js
     |   `-- Vue
-    |       `-- feedback.js
+    |       |-- Modal
+    |       |   `-- feedback.js
+    |       `-- Poc
+    |           `-- index.js
     `-- lib
         |-- bootstrap
         |   |-- dist
@@ -187,7 +188,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
             |   `-- jquery.validate.unobtrusive.min.js
             `-- LICENSE.txt
 
-37 directories, 121 files
+39 directories, 120 files
 ```
 <!-- END STRUCTURE -->
 ---
