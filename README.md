@@ -34,48 +34,61 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |-- AutoMapper
 |   `-- PocProfile.cs
 |-- Controllers
+|   |-- BaseController.cs
 |   |-- HomeController.cs
-|   `-- LoginController.cs
+|   |-- LoginController.cs
+|   `-- PocController.cs
 |-- Docker
+|-- Enums
+|   `-- Messages.cs
 |-- Extensions
 |   |-- ServiceCollectionExtensions.cs
 |   |-- WebApplicationBuilderExtensions.cs
 |   `-- WebApplicattionExtensions.cs
 |-- LICENSE
 |-- Models
+|   |-- AcessoModel.cs
 |   |-- ClienteModel.cs
 |   |-- ErrorViewModel.cs
-|   `-- UsuarioModel.cs
+|   |-- UsuarioModel.cs
+|   `-- ValidacaoModel.cs
 |-- Poc.csproj
 |-- Program.cs
 |-- Properties
 |   `-- launchSettings.json
 |-- Repositories
+|   |-- AcessoRepository.cs
 |   |-- BaseRepository.cs
 |   |-- ClienteRepository.cs
 |   |-- Interfaces
+|   |   |-- IAcessoRepository.cs
 |   |   |-- IBaseRepository.cs
 |   |   |-- IClienteRepository.cs
 |   |   `-- IUsuarioRepository.cs
 |   `-- UsuarioRepository.cs
 |-- Services
+|   |-- AcessoService.cs
 |   |-- BaseService.cs
 |   |-- ClienteService.cs
 |   |-- Interfaces
+|   |   |-- IAcessoService.cs
 |   |   |-- IBaseService.cs
 |   |   |-- IClienteService.cs
-|   |   `-- IUsuarioService.cs
-|   `-- UsuarioService.cs
+|   |   |-- IUsuarioService.cs
+|   |   `-- IValidacaoService.cs
+|   |-- UsuarioService.cs
+|   `-- ValidacaoService.cs
 |-- Settings
 |   `-- AppSettings.cs
 |-- SQL
 |   |-- docker-compose.yml
-|   |-- Poc.bak
-|   |-- Procedures
-|   `-- Tables
-|       |-- Acesso.sql
-|       |-- Cliente.sql
-|       `-- Usuario.sql
+|   |-- Poc
+|   |   |-- Procedures
+|   |   `-- Tables
+|   |       |-- Acesso.sql
+|   |       |-- Cliente.sql
+|   |       `-- Usuario.sql
+|   `-- Poc.bak
 |-- update-readme.sh
 |-- Views
 |   |-- Home
@@ -84,8 +97,11 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |-- Login
 |   |   |-- Index.cshtml
 |   |   `-- Registrar.cshtml
+|   |-- Poc
+|   |   `-- Index.cshtml
 |   |-- Shared
 |   |   |-- Error.cshtml
+|   |   |-- _FeedbackModal.cshtml
 |   |   |-- _Layout.cshtml
 |   |   `-- _ValidationScriptsPartial.cshtml
 |   |-- _ViewImports.cshtml
@@ -95,8 +111,11 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |   `-- styles.css
     |-- favicon.ico
     |-- js
-    |   |-- functions.js
-    |   `-- index.js
+    |   `-- Vue
+    |       |-- Modal
+    |       |   `-- feedback.js
+    |       `-- Poc
+    |           `-- index.js
     `-- lib
         |-- bootstrap
         |   |-- dist
@@ -169,7 +188,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
             |   `-- jquery.validate.unobtrusive.min.js
             `-- LICENSE.txt
 
-33 directories, 107 files
+39 directories, 120 files
 ```
 <!-- END STRUCTURE -->
 ---
