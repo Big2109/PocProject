@@ -9,12 +9,7 @@
         <div class="row py-4">
             <div class="offset-4 col-4 card">
                 <h3 class="py-2 text-center">Login</h3>
-                @* <span>Nome do usuário ou Email</span>
-                <input>
-                <span>Senha</span>
-                <input> *@
-
-                <form asp-action="Registrar" method="post">
+                <form asp-action="Login" method="post">
                     <div class="mb-3">
                         <label asp-for="NomeUsuario" class="form-label"> Nome do usuário ou Email </label>
                         <input asp-for="NomeUsuario" class="form-control" type="text/email" />
@@ -25,7 +20,7 @@
                         <input asp-for="Senha" class="form-control" type="password" />
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
         </div>

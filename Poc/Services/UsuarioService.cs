@@ -23,21 +23,39 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
         var validar = await _validacaoService.ValidarLoginUsuario(usuario);
         if (!validar.Sucesso) return validar;
 
-        else
+        var login = await _usuarioRepository.ObterLogin(_mapper.Map<Usuario>(usuario));
+        if (login == null)
         {
-            await Inserir(usuario);
+            validar.Mensagem.Add("Usuário não localizado na base.");
+            validar.Sucesso = false;
             return validar;
         }
-    }
-    public async Task<ValidacaoModel> Registrar(UsuarioModel usuario)
-    {
-        var validar = await _validacaoService.ValidarRegistroUsuario(usuario);
-        if (!validar.Sucesso) return validar;
 
         else
         {
-            await Inserir(usuario);
+            await _acessoService.Inserir(new AcessoModel
+            {
+                GuidUsuario = login.GuidUsuario,
+                HorarioAcesso = DateTime.Now
+            });
+
             return validar;
         }
+    }
+    public async Task<ValidacaoModel> Registrar(UsuarioModel novoUsuario)
+    {
+        var validar = await _validacaoService.ValidarRegistroUsuario(novoUsuario);
+        if (!validar.Sucesso) return validar;
+
+        var usuario = await _usuarioRepository.ObterLogin(_mapper.Map<Usuario>(novoUsuario));
+        if (usuario != null)
+        {
+            validar.Sucesso = false;
+            validar.Mensagem.Add("Nome de usuário já em uso.");
+        }
+
+        else await Inserir(novoUsuario);
+
+        return validar;
     }
 }

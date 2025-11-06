@@ -23,35 +23,34 @@ public class LoginController : BaseController
     public async Task<IActionResult> Login(UsuarioModel usuario)
     {
         usuario.HorarioAcesso = DateTime.Now;
-        var registrar = await _usuarioService.Login(usuario);
-        if (!registrar.Sucesso)
+        var login = await _usuarioService.Login(usuario);
+        if (!login.Sucesso)
         {
-            Erro(registrar.Mensagem.FirstOrDefault() ?? "");
-            return View(usuario);
+            Erro(login.Mensagem.FirstOrDefault() ?? "");
+            return RedirectToAction("Index");
         }
 
-        Sucesso("Usuário registrado com sucesso!");
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Home");
     }
     public IActionResult Registrar()
     {
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> Registrar(UsuarioModel usuario)
+    public async Task<IActionResult> Registrar(UsuarioModel novoUsuario)
     {
         if (!ModelState.IsValid)
         {
             Erro(string.Empty);
-            return View(usuario);
+            return View(novoUsuario);
         }
 
-        usuario.HorarioAcesso = DateTime.Now;
-        var registrar = await _usuarioService.Registrar(usuario);
+        novoUsuario.HorarioAcesso = DateTime.Now;
+        var registrar = await _usuarioService.Registrar(novoUsuario);
         if (!registrar.Sucesso)
         {
             Erro(registrar.Mensagem.FirstOrDefault() ?? "");
-            return View(usuario);
+            return View(novoUsuario);
         }
 
         Sucesso("Usuário registrado com sucesso!");

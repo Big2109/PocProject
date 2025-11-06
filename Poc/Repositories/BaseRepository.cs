@@ -1,3 +1,4 @@
+using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using Migrations.Context;
 using Poc.Repositories.Interfaces;
@@ -7,7 +8,6 @@ namespace Poc.Repositories;
 public class BaseRepository<T> : IBaseRepository<T> where T : class
 {
     protected readonly Context _context;
-
     public BaseRepository(Context context)
     {
         _context = context;

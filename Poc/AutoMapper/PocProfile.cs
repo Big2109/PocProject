@@ -25,10 +25,19 @@ public class PocProfile : Profile
         .ReverseMap();
     }
 
+    private void AcessoMap()
+    {
+        CreateMap<Acesso, AcessoModel>()
+        .ForMember(c => c.GuidUsuario, opt => opt.MapFrom(cm => cm.GuidUsuario))
+        .ForMember(c => c.HorarioAcesso, opt => opt.MapFrom(cm => cm.HorarioAcesso))
+        .ReverseMap();
+    }
+
     public PocProfile()
     {
         AllowNullCollections = true;
         ClienteMap();
         UsuarioMap();
+        AcessoMap();
     }
 }

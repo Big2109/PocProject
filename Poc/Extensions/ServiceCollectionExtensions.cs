@@ -11,22 +11,18 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<Context>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
         services.AddScoped<IClienteService, ClienteService>();
         services.AddScoped<IUsuarioService, UsuarioService>();
+        services.AddScoped<IAcessoService, AcessoService>();
         services.AddScoped<IValidacaoService, ValidacaoService>();
         return services;
     }
 
     public static IServiceCollection RegisterRepositories(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<Context>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
         services.AddScoped<IClienteRepository, ClienteRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped<IAcessoRepository, AcessoRepository>();
         return services;
     }
 }

@@ -1,4 +1,6 @@
-CREATE TABLE POC.[dbo].[Usuario] (
+USE Poc;
+GO
+CREATE TABLE [dbo].[Usuario] (
     [GuidUsuario]   UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
     [Nome]          NVARCHAR (100)   NULL,
     [NomeUsuario]   NVARCHAR (100)   NULL,
