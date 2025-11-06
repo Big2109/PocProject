@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -30,9 +31,20 @@
                                 asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login"
-                                asp-action="Index">Login</a>
+                            @{
+                                var usuario = HttpContextAccessor.HttpContext?.Session.GetString("UsuarioNome");
+                                if (string.IsNullOrEmpty(usuario))
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login"
+                                        asp-action="Index">Login</a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Sair" asp-action="Index">Sair</a>
+                                }
+                            }
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -70,7 +82,7 @@
                 tipo: "@TempData["TipoModal"]",
                 mensagem: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["MensagemModal"])),
                 camposInvalidos: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["CamposInvalidos"]))
-                };
+                                    };
 
             showFeedbackModal(modalData.tipo, modalData.mensagem, modalData.camposInvalidos);
         </script>

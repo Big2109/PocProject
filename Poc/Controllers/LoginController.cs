@@ -27,6 +27,8 @@ public class LoginController : BaseController
             return RedirectToAction("Index");
         }
 
+        HttpContext.Session.SetString("UsuarioNome", usuario.NomeUsuario);
+
         return RedirectToAction("Index", "Poc");
     }
     public IActionResult Registrar()

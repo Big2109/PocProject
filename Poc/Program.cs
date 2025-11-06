@@ -13,6 +13,8 @@ builder.Services.AddDbContextFactory<Context>(options =>
 builder.Services.RegisterServices(builder.Configuration);
 builder.Services.RegisterRepositories(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(PocProfile));
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
 
 var app = builder.Build();
 app.UseMvcPresentationPipeline();
@@ -21,5 +23,9 @@ app.Lifetime.ApplicationStopping.Register(() =>
     Console.WriteLine("Aplicação está parando… limpando recursos.");
 });
 app.UseCors("AllowVueApp");
+app.UseSession();
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();
