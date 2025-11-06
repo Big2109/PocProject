@@ -12,7 +12,7 @@ public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
     {
         return await _context.Usuario
             .Where(u => u.NomeUsuario == usuario.NomeUsuario)
-            .FirstOrDefaultAsync();
+            .FirstAsync();
     }
     public async Task<Usuario> ObterPorNomeUsuarioESenha(Usuario usuario)
     {
@@ -22,6 +22,6 @@ public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
                     || u.Email == usuario.NomeUsuario
                         && u.Senha == usuario.Senha
                 )
-            .FirstOrDefaultAsync();
+            .FirstAsync();
     }
 }
