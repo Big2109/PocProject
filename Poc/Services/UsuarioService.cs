@@ -10,13 +10,25 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
 {
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IValidacaoService _validacaoService;
-    public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper, IValidacaoService validacaoService)
+    private readonly IAcessoService _acessoService;
+    public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper, IValidacaoService validacaoService, IAcessoService acessoService)
         : base(usuarioRepository, mapper)
     {
         _usuarioRepository = usuarioRepository;
         _validacaoService = validacaoService;
+        _acessoService = acessoService;
     }
+    public async Task<ValidacaoModel> Login(UsuarioModel usuario)
+    {
+        var validar = await _validacaoService.ValidarLoginUsuario(usuario);
+        if (!validar.Sucesso) return validar;
 
+        else
+        {
+            await Inserir(usuario);
+            return validar;
+        }
+    }
     public async Task<ValidacaoModel> Registrar(UsuarioModel usuario)
     {
         var validar = await _validacaoService.ValidarRegistroUsuario(usuario);

@@ -45,5 +45,22 @@ public class Context : DbContext
             .HasColumnType("datetime2")
                 .IsRequired();
         });
+
+        modelBuilder.Entity<Acesso>(entity =>
+        {
+            entity.ToTable("Acesso");
+
+            entity.HasKey(e => e.GuidUsuario);
+
+            entity.Property(e => e.GuidUsuario)
+                .HasColumnType("uniqueidentifier");
+
+            entity.Property(e => e.HorarioAcesso)
+                .HasColumnType("datetime2");
+
+            entity.HasOne(e => e.Usuario)
+                .WithOne(u => u.Acesso)
+                .HasForeignKey<Acesso>(e => e.GuidUsuario);
+        });
     }
 }

@@ -1,8 +1,8 @@
-CREATE TABLE Poc.[dbo].[Usuario](
-	[GuidUsuario] [uniqueidentifier] NULL,
-	[Nome] [nvarchar](100) NULL,
-    [NomeUsuario] [nvarchar](100) NULL,
-    [Email] [nvarchar](100) NULL,
-	[Senha] [nvarchar](100) NULL,
-	[HorarioAcesso] [datetime] NULL
-) ON [PRIMARY]
+CREATE TABLE POC.[dbo].[Usuario] (
+    [GuidUsuario]   UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    [Nome]          NVARCHAR (100)   NULL,
+    [NomeUsuario]   NVARCHAR (100)   NULL,
+    [Email]         NVARCHAR (100)   NULL,
+    [Senha]         NVARCHAR (100)   NULL,
+    [HorarioAcesso] DATETIME         NULL
+);

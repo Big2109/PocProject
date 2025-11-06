@@ -34,39 +34,49 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |-- AutoMapper
 |   `-- PocProfile.cs
 |-- Controllers
+|   |-- BaseController.cs
 |   |-- HomeController.cs
 |   `-- LoginController.cs
 |-- Docker
+|-- Enums
+|   `-- Messages.cs
 |-- Extensions
 |   |-- ServiceCollectionExtensions.cs
 |   |-- WebApplicationBuilderExtensions.cs
 |   `-- WebApplicattionExtensions.cs
 |-- LICENSE
 |-- Models
+|   |-- AcessoModel.cs
 |   |-- ClienteModel.cs
 |   |-- ErrorViewModel.cs
-|   `-- UsuarioModel.cs
+|   |-- UsuarioModel.cs
+|   `-- ValidacaoModel.cs
 |-- Poc.csproj
 |-- Program.cs
 |-- Properties
 |   `-- launchSettings.json
 |-- Repositories
+|   |-- AcessoRepository.cs
 |   |-- BaseRepository.cs
 |   |-- ClienteRepository.cs
 |   |-- Interfaces
+|   |   |-- IAcessoRepository.cs
 |   |   |-- IBaseRepository.cs
 |   |   |-- IClienteRepository.cs
 |   |   `-- IUsuarioRepository.cs
 |   `-- UsuarioRepository.cs
 |-- Services
+|   |-- AcessoService.cs
 |   |-- BaseService.cs
 |   |-- ClienteService.cs
 |   |-- Interfaces
+|   |   |-- IAcessoService.cs
 |   |   |-- IBaseService.cs
 |   |   |-- IClienteService.cs
 |   |   |-- IUsuarioService.cs
 |   |   `-- IValidacaoService.cs
-|   `-- UsuarioService.cs
+|   |-- UsuarioService.cs
+|   `-- ValidacaoService.cs
 |-- Settings
 |   `-- AppSettings.cs
 |-- SQL
@@ -87,6 +97,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |   `-- Registrar.cshtml
 |   |-- Shared
 |   |   |-- Error.cshtml
+|   |   |-- _FeedbackModal.cshtml
 |   |   |-- _Layout.cshtml
 |   |   `-- _ValidationScriptsPartial.cshtml
 |   |-- _ViewImports.cshtml
@@ -97,7 +108,9 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |-- favicon.ico
     |-- js
     |   |-- functions.js
-    |   `-- index.js
+    |   |-- index.js
+    |   `-- Vue
+    |       `-- feedback.js
     `-- lib
         |-- bootstrap
         |   |-- dist
@@ -170,7 +183,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
             |   `-- jquery.validate.unobtrusive.min.js
             `-- LICENSE.txt
 
-33 directories, 108 files
+35 directories, 119 files
 ```
 <!-- END STRUCTURE -->
 ---

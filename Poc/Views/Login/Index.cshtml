@@ -1,15 +1,32 @@
+@using Poc.Models
 @{
     ViewData["Title"] = "Login";
 }
 
+@model UsuarioModel
 <div class="body">
     <div class="col-12">
         <div class="row py-4">
             <div class="offset-4 col-4 card">
-                <span>Login</span>
+                <h3 class="py-2 text-center">Login</h3>
+                @* <span>Nome do usuário ou Email</span>
                 <input>
                 <span>Senha</span>
-                <input>
+                <input> *@
+
+                <form asp-action="Registrar" method="post">
+                    <div class="mb-3">
+                        <label asp-for="NomeUsuario" class="form-label"> Nome do usuário ou Email </label>
+                        <input asp-for="NomeUsuario" class="form-control" type="text/email" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Senha" class="form-label"></label>
+                        <input asp-for="Senha" class="form-control" type="password" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
             </div>
         </div>
         <div class="row text-center py-4">
@@ -18,22 +35,3 @@
         </div>
     </div>
 </div>
-@* <div id="app">
-    <h1>Lista de Clientes</h1>
-
-    <!-- Botão para listar clientes -->
-    <button class="btn btn-primary mb-3" @@click="listarClientes">
-        Listar Clientes
-    </button>
-
-    <ul>
-        <li v-for="p in clientes" :key="p.guidCliente">
-            {{ p.nome }}
-        </li>
-    </ul>
-</div> *@
-
-@section Scripts {
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    @* <script src="~/js/index.js" asp-append-version="true"></script> *@
-}
