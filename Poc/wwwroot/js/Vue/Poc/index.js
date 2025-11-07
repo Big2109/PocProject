@@ -1,4 +1,5 @@
-createApp({
+const { createApp: landingContent } = Vue;
+landingContent({
     data() {
         return {
             features: [

@@ -6,28 +6,13 @@
     <section class="hero-section">
         <div class="container text-center">
             <h1>Bem-vindo à nossa aplicação!</h1>
-            <p>Uma POC moderna com .NET e Vue.js. Explore nossos recursos abaixo.</p>
+            <h2>Uma POC moderna com .NET e Vue.js. Explore nossos recursos abaixo.</h2>
+            <div v-for="feature in features" :key="feature.title" class="mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ feature.title }}</h5>
+                    <p class="card-text">{{ feature.description }}</p>
+                </div>
+            </div>
         </div>
     </section>
 </div>
-
-<script>
-    const { createApp } = Vue;
-
-    createApp({
-        data() {
-            return {
-                features: [
-                    { title: 'Login Seguro', description: 'Autenticação com validação na base de dados.' },
-                    { title: 'Gestão de Usuários', description: 'Controle completo de usuários e permissões.' },
-                    { title: 'Relatórios', description: 'Visualize relatórios em tempo real.' },
-                ]
-            };
-        },
-        methods: {
-            ctaClick() {
-                alert("Você clicou em 'Saiba Mais'!");
-            }
-        }
-    }).mount("#landing-content");
-</script>

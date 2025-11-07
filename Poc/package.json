@@ -1,0 +1,22 @@
+{
+  "name": "poc",
+  "version": "1.0.0",
+  "description": "Um projeto **ASP.NET Core MVC** desenvolvido para servir como **portfólio pessoal**, com integração a um **banco de dados SQL Server** em container Docker.   O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+, Entity Framework Core** e boas práticas de arquitetura MVC.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx tailwindcss -i ./wwwroot/css/tailwind.css -o ./wwwroot/css/site.css --minify",
+    "watch:css": "npx tailwindcss -i ./wwwroot/css/tailwind.css -o ./wwwroot/css/site.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.17"
+  }
+}

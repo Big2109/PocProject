@@ -1,5 +1,65 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  background: linear-gradient(transparent, #24234a, #0f0d40);
+}
+
+body {
+  font-family: "Roboto", Arial, serif !important;
+  height: 100vh;
+  background: linear-gradient(#05032e, #0f0d40, #24234a);
+  color: #fff;
+
+  h1,
+  p,
+  .container {
+    color: #fff;
+  }
+}
+
+a.logo {
+  width: 100px;
+  height: 100px;
+  background: url(../img/logo/logo_poc.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+div h1 {
+  margin: 35px;
+  font-size: 55px;
+  line-height: 55px;
+  font-weight: 800;
+}
+
+div h2 {
+  margin: 25px;
+  font-size: 35px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+div h3 {
+  margin: 15px;
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.navbar {
+  background: linear-gradient(#e8e7df, #fff);
+}
 
 a.navbar-brand {
   white-space: normal;
@@ -7,21 +67,49 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-a {
-  color: #0077cc;
+.btn.btn-primary {
+  color: #fff;
+  background-color: #24234a;
+  border-color: #fff;
+  min-width: 140px;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+button.btn-primary:hover {
+  background-color: #5670c7;
+}
+
+a.btn-primary:hover {
+  background-color: #5670c7;
+}
+
+.close {
+  border: none;
+  background: transparent;
+  font-size: 30px;
+  line-height: 12px;
+  color: #24234a;
+}
+
+.close:hover {
+  filter: brightness(1.2);
+  transition: all 0.3s ease;
 }
 
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
   color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  background-color: #24234a;
+  border-color: #05032e;
+}
+
+.nav-link:hover {
+  filter: brightness(1.1);
+  transition: all 0.3s ease;
+}
+
+button.navbar-toggler:hover {
+  display: flex;
+  position: initial;
 }
 
 .border-top {
@@ -42,7 +130,6 @@ button.accept-policy {
 }
 
 .footer {
-  position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
@@ -57,14 +144,22 @@ button.accept-policy {
 }
 
 .card {
+  min-height: 285px;
+  max-width: 400px;
+  width: 100%;
   padding: 20px;
-  border: 1px solid #333333;
+  border: 1px solid #24234a;
+  background: radial-gradient(#fff, #e8e7df);
+  z-index: 10;
 }
 
-a {
+.card-text {
+  color: #24234a;
+}
+
+h3 a {
   text-decoration: none;
-  color: #18547c;
-  display: block;
+  color: #24234a;
 }
 
 a:hover,
@@ -76,63 +171,31 @@ a:active {
   border: 2px solid #dc3545 !important;
 }
 
-/* Hero Section */
-.hero-section {
-  background: #f0f4f8;
-  padding: 4rem 2rem;
+i {
+  font-size: 40px;
 }
 
-.hero-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.hero-section p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.hero-section button {
-  padding: 0.75rem 1.5rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.hero-section button:hover {
-  background-color: #0056b3;
-}
-
-/* Features Section */
-.features-section {
-  padding: 4rem 2rem;
-  background: #ffffff;
-}
-
-.features-grid {
+#particles {
+  top: 120px;
+  height: 100%;
+  width: 100%;
+  position: relative;
   display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
 }
 
-.feature-card {
-  background: #f8f9fa;
-  padding: 2rem;
-  border-radius: 8px;
-  width: 250px;
-  text-align: center;
-  transition: transform 0.2s ease;
+#tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Contact Section */
-.contact-section {
-  background: #f0f4f8;
-  padding: 4rem 2rem;
+.modal-header {
+  justify-content: end;
 }

@@ -1,6 +1,6 @@
-const { createApp, ref, onMounted } = Vue;
+const { createApp: showModal } = Vue;
 
-createApp({
+showModal({
     setup() {
         const tipo = ref('alerta');
         const mensagem = ref('');
@@ -19,11 +19,6 @@ createApp({
 
             modalInstance.show();
             aplicarErrosNosInputs();
-            setTimeout(() => {
-                document.querySelectorAll(".input-erro").forEach(el => {
-                    el.classList.remove("input-erro");
-                });
-            }, 1500);
         };
 
         const aplicarErrosNosInputs = () => {
@@ -35,7 +30,13 @@ createApp({
                 const input = document.querySelector(`[name="${campo}"]`);
                 if (input)
                     input.classList.add("input-erro");
+                input.addEventListener('input', removerErroAoDigitar);
             });
+        };
+
+        const removerErroAoDigitar = (event) => {
+            event.target.classList.remove('input-erro');
+            event.target.removeEventListener('input', removerErroAoDigitar);
         };
 
         window.showFeedbackModal = showFeedbackModal;

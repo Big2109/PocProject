@@ -5,28 +5,36 @@
 
 @model UsuarioModel
 <div class="body">
-    <div class="col-12">
-        <div class="row py-4">
-            <div class="offset-4 col-4 card">
-                <h3 class="py-2 text-center">Login</h3>
-                <form asp-action="Login" method="post">
-                    <div class="mb-3">
-                        <label asp-for="NomeUsuario" class="form-label"> Nome do usuário ou Email </label>
-                        <input asp-for="NomeUsuario" class="form-control" type="text/email" />
-                    </div>
+    <div id="particles">
+        <div id="tsparticles">
+            <div class="d-flex justify-content-center py-4 px-2">
+                <div class="card p-4">
+                    <h2 class="py-2 text-center">LOGIN</h2>
+                    <form asp-action="Entrar" method="post">
+                        <div class="mb-3">
+                            <label asp-for="NomeUsuario" class="form-label"> Nome do usuário ou Email </label>
+                            <input asp-for="NomeUsuario" class="form-control" type="text/email" />
+                        </div>
 
-                    <div class="mb-3">
-                        <label asp-for="Senha" class="form-label"></label>
-                        <input asp-for="Senha" class="form-control" type="password" />
-                    </div>
+                        <div class="mb-3">
+                            <label asp-for="Senha" class="form-label"></label>
+                            <input asp-for="Senha" class="form-control" type="password" />
+                        </div>
 
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Entrar</button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="row text-center py-4">
-            <h4>Novo Usuário?</h4>
-            <a asp-area="" asp-controller="Login" asp-action="Registrar">Registrar-se</a>
+            <div class="d-flex justify-content-center py-4 px-2" style="position: relative; z-index: 10;">
+                <div class="d-flex" style="flex-direction: column;">
+                    <h3>Novo Usuário?</h3>
+                    <a class="mt-3 btn btn-primary" asp-area="" asp-controller="Login"
+                        asp-action="Registrar">Registrar-se</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@ public class LoginController : BaseController
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> Login(UsuarioModel usuario)
+    public async Task<IActionResult> Entrar(UsuarioModel usuario)
     {
         usuario.HorarioAcesso = DateTime.Now;
         var login = await _usuarioService.Login(usuario);

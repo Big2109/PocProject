@@ -22,6 +22,6 @@ public class Messages
 
     public static string PrecisaSerPreenchido(string expressao)
     {
-        return $"O campo {expressao} precisa ser preenchido.";
+        return $"O campo {expressao} não pode ser vazio!";
     }
 }

@@ -11,7 +11,7 @@ public class ValidacaoService : IValidacaoService
         var validacao = new ValidacaoModel { Cadastro = Messages.CadastroEnum.Nulo, Mensagem = new List<string>() };
 
         if (string.IsNullOrEmpty(usuario.NomeUsuario))
-            validacao.Mensagem.Add(Messages.PrecisaSerPreenchido("Nome Usuário"));
+            validacao.Mensagem.Add(Messages.PrecisaSerPreenchido("Nome do usuário ou Email"));
         else if (string.IsNullOrEmpty(usuario.Senha))
             validacao.Mensagem.Add(Messages.PrecisaSerPreenchido("Senha"));
         else
