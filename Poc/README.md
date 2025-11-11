@@ -113,7 +113,8 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |-- favicon.ico
     |-- img
     |   `-- logo
-    |       `-- logo_poc.svg
+    |       |-- logo_poc.svg
+    |       `-- poc_logo.svg
     |-- js
     |   `-- Vue
     |       |-- Login
@@ -1361,7 +1362,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |-- package.json
     `-- package-lock.json
 
-82 directories, 1250 files
+82 directories, 1251 files
 ```
 <!-- END STRUCTURE -->
 ---

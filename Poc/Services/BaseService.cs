@@ -28,4 +28,11 @@ public class BaseService<TEntity, TModel>
         var inserted = await _repository.Inserir(entity);
         return _mapper.Map<TModel>(inserted);
     }
+
+    public async Task<TModel> Atualizar(TModel model)
+    {
+        var entity = _mapper.Map<TEntity>(model);
+        var updated = await _repository.Atualizar(entity);
+        return _mapper.Map<TModel>(updated);
+    }
 }

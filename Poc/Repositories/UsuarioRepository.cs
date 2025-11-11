@@ -22,6 +22,6 @@ public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
                     || u.Email == usuario.NomeUsuario
                         && u.Senha == usuario.Senha
                 )
-            .FirstAsync();
+            .FirstOrDefaultAsync();
     }
 }

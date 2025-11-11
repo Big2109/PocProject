@@ -30,8 +30,20 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
             validar.Sucesso = false;
             return validar;
         }
+        else
+        {
+            var now = DateTime.Now;
+            await _acessoService.Atualizar(new AcessoModel
+            {
+                GuidUsuario = login.GuidUsuario,
+                HorarioAcesso = now
+            });
 
-        else return validar;
+            login.HorarioAcesso = now;
+            await _usuarioRepository.Atualizar(login);
+
+            return validar;
+        }
     }
     public async Task<ValidacaoModel> Registrar(UsuarioModel novoUsuario)
     {

@@ -11,7 +11,7 @@ footer {
   position: fixed;
   bottom: 0;
   z-index: 10;
-  background: linear-gradient(transparent, #24234a, #0f0d40);
+  background: linear-gradient(transparent, #0f0d40);
 }
 
 body {
@@ -27,13 +27,16 @@ body {
   }
 }
 
-a.logo {
-  width: 100px;
-  height: 100px;
-  background: url(../img/logo/logo_poc.svg);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
+a i.logo {
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  background: url(/img/logo/poc_logo.svg) center/contain no-repeat;
+}
+
+a i.logo:hover {
+  filter: brightness(1.5);
+  transition: all 0.3s ease;
 }
 
 div h1 {
@@ -103,7 +106,7 @@ a.btn-primary:hover {
 }
 
 .nav-link:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.5);
   transition: all 0.3s ease;
 }
 

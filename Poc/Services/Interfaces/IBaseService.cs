@@ -6,4 +6,5 @@ public interface IBaseService<TEntity, TModel>
 {
     Task<List<TModel>> Listar();
     Task<TModel> Inserir(TModel model);
+    Task<TModel> Atualizar(TModel model);
 }

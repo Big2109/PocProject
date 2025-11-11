@@ -24,4 +24,10 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
         await _context.SaveChangesAsync();
         return entity;
     }
+    public async Task<T> Atualizar(T entity)
+    {
+        _context.Update(entity);
+        await _context.SaveChangesAsync();
+        return entity;
+    }
 }
