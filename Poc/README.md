@@ -43,6 +43,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   `-- Messages.cs
 |-- Extensions
 |   |-- ServiceCollectionExtensions.cs
+|   |-- UserSessionHelper.cs
 |   |-- WebApplicationBuilderExtensions.cs
 |   `-- WebApplicattionExtensions.cs
 |-- LICENSE
@@ -99,11 +100,13 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |   |-- Index.cshtml
 |   |   `-- Registrar.cshtml
 |   |-- Poc
+|   |   |-- Dashboard.cshtml
 |   |   `-- Index.cshtml
 |   |-- Shared
 |   |   |-- Error.cshtml
 |   |   |-- _FeedbackModal.cshtml
 |   |   |-- _Layout.cshtml
+|   |   |-- _Menu.cshtml
 |   |   `-- _ValidationScriptsPartial.cshtml
 |   |-- _ViewImports.cshtml
 |   `-- _ViewStart.cshtml
@@ -123,7 +126,8 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |       |-- Modal
     |       |   `-- feedback.js
     |       `-- Poc
-    |           `-- index.js
+    |           |-- index.js
+    |           `-- menu.js
     |-- lib
     |   |-- bootstrap
     |   |   |-- dist
@@ -1362,7 +1366,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |-- package.json
     `-- package-lock.json
 
-82 directories, 1251 files
+82 directories, 1255 files
 ```
 <!-- END STRUCTURE -->
 ---

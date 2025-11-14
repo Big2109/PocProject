@@ -1,0 +1,13 @@
+<div id="menu" class="sidebar">
+    <div class="toggle-btn" onclick="toggleMenu()">
+        ☰
+    </div>
+    <ul>
+        <li v-for="item in items" :key="item.title">
+            <a :href="item.link">
+                <strong>{{ item.title }}</strong>
+                <p>{{ item.description }}</p>
+            </a>
+        </li>
+    </ul>
+</div>

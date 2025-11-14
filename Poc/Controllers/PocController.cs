@@ -11,4 +11,10 @@ public class PocController : BaseController
         TempData.Keep();
         return View();
     }
+
+    public IActionResult Dashboard()
+    {
+        TempData.Keep();
+        return View();
+    }
 }

@@ -15,6 +15,8 @@ footer {
 }
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: "Roboto", Arial, serif !important;
   height: 100vh;
   background: linear-gradient(#05032e, #0f0d40, #24234a);
@@ -24,6 +26,8 @@ body {
   p,
   .container {
     color: #fff;
+    width: 100%;
+    margin: 0;
   }
 }
 
@@ -61,7 +65,7 @@ div h3 {
 }
 
 .navbar {
-  background: linear-gradient(#e8e7df, #fff);
+  background: linear-gradient(0deg, #fff 50%, #e8e7df);
 }
 
 a.navbar-brand {
@@ -202,3 +206,115 @@ i {
 .modal-header {
   justify-content: end;
 }
+
+/* .sidebar {
+  position: absolute;
+  top: 85px;
+  border: none;
+  max-width: 240px;
+  height: 80vh;
+  background: #fff;
+  color: #24234a;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: #24234a;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background .3s;
+}
+
+.sidebar a:hover {
+  background: #24234a;
+  color: #fff;
+}
+
+.sidebar p {
+  color: #8e8d91;
+} */
+
+.sidebar {
+  position: fixed;
+  inset: calc(var(--header-height, 70px)) 0 0 0;
+  left: 0;
+  width: 45px;
+  height: 100vh;
+  background: #fff;
+  transition: width 0.3s;
+  overflow: hidden;
+}
+
+.sidebar.expanded {
+  width: 270px;
+}
+
+.sidebar .toggle-btn {
+  color: #24234a;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  width: 45px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0px 10px;
+  margin-top: 20px;
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: #24234a;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover {
+  background: #24234a;
+  color: #fff;
+}
+
+.sidebar p {
+  color: #8e8d91;
+}
+
+.sidebar .icon {
+  font-size: 20px;
+  width: 40px;
+}
+
+.sidebar a {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.sidebar.expanded a {
+  opacity: 1;
+}
+
+.content {
+  margin-left: 60px;
+  padding: 20px;
+  transition: margin-left 0.3s;
+}
+
+.sidebar.expanded~.content {
+  margin-left: 220px;
+}
+
+/* #8e8d91 */

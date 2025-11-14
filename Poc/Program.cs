@@ -17,6 +17,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 
 var app = builder.Build();
+UserSessionHelper.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 app.UseMvcPresentationPipeline();
 app.Lifetime.ApplicationStopping.Register(() =>
 {
