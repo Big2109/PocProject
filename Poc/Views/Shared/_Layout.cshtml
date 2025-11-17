@@ -20,7 +20,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light mb-3">
             <div class="container-fluid">
 
                 <a class="navbar-brand" asp-controller="Home" asp-action="Index" title="Home">
@@ -63,7 +63,7 @@
     </main>
 
     <footer class="footer text-muted">
-        <div class="d-flex justify-content-center text-white">
+        <div class="d-flex justify-content-center" style="color: #05032e;">
             &copy; 2025 - Eric Marques Bighi - <a class="d-inline" asp-area="" asp-controller="Home"
                 asp-action="Privacy">Privacy</a>
             @*
@@ -90,7 +90,7 @@
                 tipo: "@TempData["TipoModal"]",
                 mensagem: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["MensagemModal"])),
                 camposInvalidos: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["CamposInvalidos"]))
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    };
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    };
 
             showFeedbackModal(modalData.tipo, modalData.mensagem, modalData.camposInvalidos);
         </script>
