@@ -1,4 +1,6 @@
+using System.Security.Claims;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Migrations.Entities;
 using Poc.Models;
 using Poc.Repositories.Interfaces;
@@ -11,12 +13,14 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IValidacaoService _validacaoService;
     private readonly IAcessoService _acessoService;
-    public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper, IValidacaoService validacaoService, IAcessoService acessoService)
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper, IValidacaoService validacaoService, IAcessoService acessoService, IHttpContextAccessor httpContextAccessor)
         : base(usuarioRepository, mapper)
     {
         _usuarioRepository = usuarioRepository;
         _validacaoService = validacaoService;
         _acessoService = acessoService;
+        _httpContextAccessor = httpContextAccessor;
     }
     public async Task<ValidacaoModel> Login(UsuarioModel usuario)
     {
@@ -41,6 +45,29 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
 
             login.HorarioAcesso = now;
             await _usuarioRepository.Atualizar(login);
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, login.NomeUsuario),
+                new Claim("GuidUsuario", login.GuidUsuario.ToString())
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, "CookieAuthentication");
+            var principal = new ClaimsPrincipal(claimsIdentity);
+            var context = _httpContextAccessor.HttpContext;
+            if (context == null)
+            {
+                throw new InvalidOperationException("HttpContext não está disponível");
+            }
+
+            await context.SignInAsync(
+                "CookieAuthentication",
+                principal,
+                new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTime.UtcNow.AddHours(8)
+                });
 
             return validar;
         }

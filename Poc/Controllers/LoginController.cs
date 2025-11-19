@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Poc.Models;
 using Poc.Services.Interfaces;
@@ -29,7 +30,7 @@ public class LoginController : BaseController
 
         HttpContext.Session.SetString("UsuarioNome", usuario.NomeUsuario);
 
-        return RedirectToAction("Index", "Poc");
+        return RedirectToAction("Dashboard", "Poc");
     }
     public IActionResult Registrar()
     {
@@ -58,7 +59,7 @@ public class LoginController : BaseController
 
     public async Task<IActionResult> Sair()
     {
-        HttpContext.Session.Clear();
+        await HttpContext.SignOutAsync("CookieAuthentication");
         return RedirectToAction("Index", "Home");
     }
 }

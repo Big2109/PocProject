@@ -1,5 +1,3 @@
-namespace Poc.Extensions;
-
 public static class UserSessionHelper
 {
     private static IHttpContextAccessor _httpContextAccessor;
@@ -9,19 +7,13 @@ public static class UserSessionHelper
         _httpContextAccessor = accessor;
     }
 
-    public static bool IsLogged
-    {
-        get
-        {
-            var user = _httpContextAccessor?
-                .HttpContext?
-                .Session?
-                .GetString("UsuarioNome");
-
-            return !string.IsNullOrEmpty(user);
-        }
-    }
+    public static bool IsLogged =>
+        _httpContextAccessor?.HttpContext?.User?.Identity?.IsAuthenticated ?? false;
 
     public static string UserName =>
-        _httpContextAccessor.HttpContext.Session.GetString("UsuarioNome");
+        _httpContextAccessor?.HttpContext?.User?.Identity?.Name ?? string.Empty;
+
+    public static string GetClaim(string claimType) =>
+        _httpContextAccessor?.HttpContext?.User?.Claims
+            .FirstOrDefault(c => c.Type == claimType)?.Value ?? string.Empty;
 }

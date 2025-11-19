@@ -37,7 +37,7 @@
 
                     <!-- Login/Sair -->
                     <div>
-                        @if (UserSessionHelper.IsLogged)
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
                         {
                             <a class="btn btn-primary text-white" asp-area="" asp-controller="Login"
                                 asp-action="Sair">Sair</a>
@@ -90,7 +90,7 @@
                 tipo: "@TempData["TipoModal"]",
                 mensagem: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["MensagemModal"])),
                 camposInvalidos: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["CamposInvalidos"]))
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    };
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        };
 
             showFeedbackModal(modalData.tipo, modalData.mensagem, modalData.camposInvalidos);
         </script>

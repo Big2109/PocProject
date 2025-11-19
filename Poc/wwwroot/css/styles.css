@@ -2,6 +2,7 @@
 for details on configuring this project to bundle and minify static web assets. */
 html {
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 header {
@@ -53,8 +54,8 @@ footer {
   text-decoration: none;
   color: #24234a;
   padding: 10px;
-  border-radius: 4px;
-  transition: background 0.3s;
+  border-radius: 10px;
+  transition: all 0.3s;
 }
 
 .sidebar a:hover {
@@ -73,7 +74,7 @@ footer {
 
 .sidebar a {
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
 }
 
 .sidebar.expanded a {
@@ -281,4 +282,16 @@ i {
 
 .modal-header {
   justify-content: end;
+}
+
+.card-dash {
+  position: relative;
+  bottom: 100px;
+  width: 85%;
+  height: 100vh;
+  padding: 20px;
+  border: 1px solid #24234a;
+  background: #fff;
+  z-index: 10;
+  border-radius: 15px 0px 0px 15px;
 }
