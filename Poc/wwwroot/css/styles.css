@@ -233,12 +233,18 @@ button.accept-policy {
   width: 100%;
   padding: 20px;
   border: 1px solid #24234a;
-  background: radial-gradient(#fff, #e8e7df);
+  background: linear-gradient(0deg, #fff 85%, #e8e7df);
   z-index: 10;
 }
 
 .card-text {
-  color: #24234a;
+  font-weight: 500;
+  color: gray;
+}
+
+.card input {
+  background: #fff;
+  border-bottom: 4px solid #eceffa;
 }
 
 h3 a {
@@ -253,10 +259,6 @@ a:active {
 
 .input-erro {
   border: 2px solid #dc3545 !important;
-}
-
-i {
-  font-size: 40px;
 }
 
 #particles {
@@ -294,4 +296,74 @@ i {
   background: #fff;
   z-index: 10;
   border-radius: 15px 0px 0px 15px;
+}
+
+.table {
+  width: 100%;
+  box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.table thead tr {
+  background: #fff;
+  border-bottom: 4px solid #eceffa;
+}
+
+.table thead th {
+  border: none;
+  padding: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  color: gray;
+}
+
+.table tbody tr {
+  margin-bottom: 10px;
+  border-bottom: 4px solid #f8f9fd;
+}
+
+.table tbody th,
+.table tbody td {
+  border: none;
+  padding: 30px;
+  font-size: 14px;
+  background: #fff;
+  vertical-align: middle;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  unicode-bidi: isolate;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  unicode-bidi: isolate;
+  border-color: inherit;
+}
+
+th {
+  text-align: inherit;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+  unicode-bidi: isolate;
+}
+
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 }

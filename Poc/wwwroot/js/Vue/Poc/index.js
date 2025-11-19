@@ -1,4 +1,5 @@
 const { createApp: landingContent } = Vue;
+
 landingContent({
     data() {
         return {

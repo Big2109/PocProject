@@ -35,6 +35,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   `-- PocProfile.cs
 |-- Controllers
 |   |-- BaseController.cs
+|   |-- ConfiguracaoController.cs
 |   |-- HomeController.cs
 |   |-- LoginController.cs
 |   `-- PocController.cs
@@ -92,7 +93,11 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |       `-- Usuario.sql
 |   `-- Poc.bak
 |-- update-readme.sh
+|-- ViewModels
+|   `-- UsuariosViewModel.cs
 |-- Views
+|   |-- Configuracao
+|   |   `-- Usuarios.cshtml
 |   |-- Home
 |   |   |-- Index.cshtml
 |   |   `-- Privacy.cshtml
@@ -107,6 +112,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |   |-- _FeedbackModal.cshtml
 |   |   |-- _Layout.cshtml
 |   |   |-- _Menu.cshtml
+|   |   |-- _NovoUsuario.cshtml
 |   |   `-- _ValidationScriptsPartial.cshtml
 |   |-- _ViewImports.cshtml
 |   `-- _ViewStart.cshtml
@@ -120,8 +126,6 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |       `-- poc_logo.svg
     |-- js
     |   `-- Vue
-    |       |-- Login
-    |       |   `-- index.js
     |       |-- main.js
     |       |-- Modal
     |       |   `-- feedback.js
@@ -1366,7 +1370,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |-- package.json
     `-- package-lock.json
 
-82 directories, 1255 files
+83 directories, 1258 files
 ```
 <!-- END STRUCTURE -->
 ---

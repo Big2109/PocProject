@@ -1,0 +1,49 @@
+@using Poc.Models
+@using Poc.ViewModels
+@{
+    ViewData["Title"] = "Usuários";
+}
+
+@model UsuariosViewModel
+
+<div class="body">
+    <div id="particles">
+        <div id="tsparticles">
+            <div class="d-flex justify-content-end">
+                <div class="card-dash">
+                    <div id="usuarios" class="m-3">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Nome de usuário</th>
+                                    <th>Email</th>
+                                    <th>Último acesso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var usuario in Model.Usuarios)
+                                {
+                                    <tr class="alert">
+                                        <td>@usuario.Nome</td>
+                                        <td>@usuario.NomeUsuario</td>
+                                        <td>@usuario.Email</td>
+                                        <td>@usuario.HorarioAcesso.ToString(format: "dd/MM/yyyy - hh:mm:ss")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-end">
+                            <a id="novo-usuario" class="btn btn-primary text-white" data-bs-toggle="modal"
+                                data-bs-target="#novo-usuario">
+                                <i class="fas fa-user-plus"></i>
+                                Novo usuário
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Html.PartialAsync("_NovoUsuario", new UsuarioModel())
+</div>

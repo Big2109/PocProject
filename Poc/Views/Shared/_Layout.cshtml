@@ -81,7 +81,6 @@
     <script src="~/js/Vue/Modal/feedback.js" type="text/javascript" asp-append-version="true"></script>
     <script src="~/js/Vue/Poc/index.js" type="text/javascript" asp-append-version="true"></script>
     <script src="~/js/Vue/Poc/menu.js" type="text/javascript" asp-append-version="true"></script>
-    <script src="~/js/Vue/Login/index.js" type="text/javascript" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     @if (TempData["ExibirModal"] != null)
     {
@@ -90,7 +89,7 @@
                 tipo: "@TempData["TipoModal"]",
                 mensagem: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["MensagemModal"])),
                 camposInvalidos: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["CamposInvalidos"]))
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        };
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    };
 
             showFeedbackModal(modalData.tipo, modalData.mensagem, modalData.camposInvalidos);
         </script>
