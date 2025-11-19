@@ -8,11 +8,11 @@ namespace Poc.Repositories;
 public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
 {
     public UsuarioRepository(Context context) : base(context) { }
-    public async Task<Usuario> ObterPorNomeUsuario(Usuario usuario)
+    public async Task<Usuario> ObterPorNomeUsuario(string nomeUsuario)
     {
         return await _context.Usuario
-            .Where(u => u.NomeUsuario == usuario.NomeUsuario)
-            .FirstAsync();
+            .Where(u => u.NomeUsuario == nomeUsuario)
+            .FirstOrDefaultAsync();
     }
     public async Task<Usuario> ObterPorNomeUsuarioESenha(Usuario usuario)
     {

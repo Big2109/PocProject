@@ -77,14 +77,23 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
         var validar = await _validacaoService.ValidarRegistroUsuario(novoUsuario);
         if (!validar.Sucesso) return validar;
 
-        var usuario = await _usuarioRepository.ObterPorNomeUsuario(_mapper.Map<Usuario>(novoUsuario));
+        var usuario = await _usuarioRepository.ObterPorNomeUsuario(novoUsuario.NomeUsuario);
         if (usuario != null)
         {
             validar.Sucesso = false;
             validar.Mensagem.Add("Nome de usuário já em uso.");
         }
 
-        else await Inserir(novoUsuario);
+        else
+        {
+            var inserido = await Inserir(novoUsuario);
+
+            await _acessoService.Inserir(new AcessoModel
+            {
+                GuidUsuario = inserido.GuidUsuario,
+                HorarioAcesso = DateTime.Now
+            });
+        }
 
         return validar;
     }
