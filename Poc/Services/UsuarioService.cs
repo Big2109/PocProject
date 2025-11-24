@@ -89,7 +89,7 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
         var validar = await _validacaoService.ValidarRegistroUsuario(novoUsuario);
         if (!validar.Sucesso) return validar;
 
-        var usuario = await _usuarioRepository.ObterPorNomeUsuario(novoUsuario.NomeUsuario);
+        var usuario = await _usuarioRepository.ObterPorNomeUsuario(_mapper.Map<Usuario>(novoUsuario));
         if (usuario != null)
         {
             validar.Sucesso = false;
