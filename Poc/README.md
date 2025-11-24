@@ -108,6 +108,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 |   |   |-- Dashboard.cshtml
 |   |   `-- Index.cshtml
 |   |-- Shared
+|   |   |-- _ConfirmacaoModal.cshtml
 |   |   |-- Error.cshtml
 |   |   |-- _FeedbackModal.cshtml
 |   |   |-- _Layout.cshtml
@@ -126,10 +127,9 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |       `-- poc_logo.svg
     |-- js
     |   `-- Vue
-    |       |-- Configuracao
-    |       |   `-- usuarios.js
     |       |-- main.js
     |       |-- Modal
+    |       |   |-- confirmacao.js
     |       |   `-- feedback.js
     |       `-- Poc
     |           |-- index.js
@@ -1372,7 +1372,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |-- package.json
     `-- package-lock.json
 
-84 directories, 1259 files
+83 directories, 1260 files
 ```
 <!-- END STRUCTURE -->
 ---

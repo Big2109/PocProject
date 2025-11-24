@@ -31,6 +31,15 @@
                                         <td>@usuario.Email</td>
                                         <td>@usuario.CriadoEm.ToString("dd/MM/yyyy - HH:mm:ss")</td>
                                         <td>@usuario.HorarioAcesso.ToString("dd/MM/yyyy - HH:mm:ss")</td>
+                                        <td>
+                                            <span>
+                                                <a id="deletar-usuario" asp-controller="Configuracao"
+                                                    asp-action="Confirmacao"
+                                                    asp-route-mensagem="Deseja realmente deletar este usuário?" class="btn">
+                                                    <i class="fas fa-trash-can" style="color: red"></i>
+                                                </a>
+                                            </span>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>

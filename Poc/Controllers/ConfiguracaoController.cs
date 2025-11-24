@@ -49,4 +49,10 @@ public class ConfiguracaoController : BaseController
 
         return RedirectToAction("Usuarios");
     }
+
+    [HttpPost, Route("deletar-usuario")]
+    public async Task<IActionResult> DeletarUsuario(Guid guidUsuario)
+    {
+        return RedirectToAction("Usuarios");
+    }
 }

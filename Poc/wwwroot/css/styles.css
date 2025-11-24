@@ -380,3 +380,21 @@ td {
 .card-modal .card-text {
   min-width: 400px;
 }
+
+a.cancelar.btn.btn-primary {
+  background: #5f5f5f !important;
+}
+
+a.cancelar.btn.btn-primary:hover {
+  background: #929090 !important;
+}
+
+#deletar-usuario {
+  color: #dc3545;
+}
+
+#deletar-usuario:hover {
+  filter: brightness(1.2);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}

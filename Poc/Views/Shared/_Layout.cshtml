@@ -1,4 +1,5 @@
 ﻿@using Poc.Extensions
+@using Poc.Models
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,24 +78,37 @@
     </footer>
 
     @await Html.PartialAsync("_FeedbackModal")
+    @await Html.PartialAsync("_ConfirmacaoModal")
 
     <!-- Scripts -->
 
     <script src="~/js/Vue/main.js" type="text/javascript" asp-append-version="true"></script>
     <script src="~/js/Vue/Modal/feedback.js" type="text/javascript" asp-append-version="true"></script>
+    <script src="~/js/Vue/Modal/confirmacao.js" type="text/javascript" asp-append-version="true"></script>
     <script src="~/js/Vue/Poc/index.js" type="text/javascript" asp-append-version="true"></script>
     <script src="~/js/Vue/Poc/menu.js" type="text/javascript" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     @if (TempData["ExibirModal"] != null)
     {
         <script>
-            const modalData = {
-                tipo: "@TempData["TipoModal"]",
-                mensagem: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["MensagemModal"])),
-                camposInvalidos: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["CamposInvalidos"]))
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            };
+            const exibirModal = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["ExibirModal"]));
 
-            showFeedbackModal(modalData.tipo, modalData.mensagem, modalData.camposInvalidos);
+            if (exibirModal === "feedback") {
+                const modalDataFeedback = {
+                    tipo: "@TempData["TipoModal"]",
+                    mensagem: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["MensagemModal"])),
+                    camposInvalidos: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["CamposInvalidos"]))
+                                                    }
+
+                showFeedbackModal(modalDataFeedback.tipo, modalDataFeedback.mensagem, modalDataFeedback.camposInvalidos);
+            }
+            else if (exibirModal === "confirmacao") {
+                const modalDataConfirmacao = {
+                    mensagem: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["MensagemModal"]))
+                                    }
+
+                showConfirmacaoModal(modalDataConfirmacao.mensagem);
+            }
         </script>
     }
 </body>

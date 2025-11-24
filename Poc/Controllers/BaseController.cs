@@ -31,10 +31,21 @@ public class BaseController : Controller
 
         TempData["TipoModal"] = tipo;
         TempData["MensagemModal"] = mensagem;
-        TempData["ExibirModal"] = "true";
+        TempData["ExibirModal"] = "feedback";
+    }
+
+    protected void ConfirmacaoModal(string mensagem = null)
+    {
+        TempData["ExibirModal"] = "confirmacao";
+        TempData["MensagemModal"] = mensagem;
     }
 
     protected void Erro(string mensagem) => MensagemModal("erro", mensagem);
     protected void Sucesso(string mensagem) => MensagemModal("sucesso", mensagem);
     protected void Alerta(string mensagem = null) => MensagemModal("alerta", mensagem);
+    public IActionResult Confirmacao(string mensagem)
+    {
+        ConfirmacaoModal(mensagem);
+        return Redirect(Request.Headers["Referer"].ToString());
+    }
 }
