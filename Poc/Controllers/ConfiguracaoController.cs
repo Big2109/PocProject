@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Poc.Models;
 using Poc.Services.Interfaces;
 using Poc.ViewModels;
 
@@ -25,5 +26,27 @@ public class ConfiguracaoController : BaseController
     public async Task<IActionResult> NovoUsuario()
     {
         return View(new UsuariosViewModel(await _usuarioService.Listar()));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> NovoUsuario(UsuarioModel novoUsuario)
+    {
+        if (!ModelState.IsValid) Erro(string.Empty);
+
+        else
+        {
+            novoUsuario.CriadoEm = DateTime.Now;
+            novoUsuario.HorarioAcesso = DateTime.Now;
+            var registrar = await _usuarioService.Registrar(novoUsuario);
+            if (!registrar.Sucesso)
+            {
+                Erro(registrar.Mensagem.FirstOrDefault() ?? "");
+                return View(novoUsuario);
+            }
+
+            Sucesso("Novo Usuário registrado com sucesso!");
+        }
+
+        return RedirectToAction("Usuarios");
     }
 }

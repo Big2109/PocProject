@@ -11,8 +11,8 @@ builder.ConfigureMvcPresentationServices();
 builder.Services.AddMvcPresentation();
 builder.Services.AddDbContextFactory<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.RegisterServices(builder.Configuration);
-builder.Services.RegisterRepositories(builder.Configuration);
+builder.Services.RegisterServices();
+builder.Services.RegisterRepositories();
 builder.Services.AddAutoMapper(typeof(PocProfile));
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
@@ -26,6 +26,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.UseRequestLocalization();
 
 app.Lifetime.ApplicationStopping.Register(() =>
 {

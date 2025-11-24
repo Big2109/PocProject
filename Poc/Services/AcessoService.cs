@@ -14,4 +14,9 @@ public class AcessoService : BaseService<Acesso, AcessoModel>, IAcessoService
     {
         _acessoRepository = acessoRepository;
     }
+
+    public async Task<AcessoModel> ObterPorGuidUsuario(Guid guidUsuario)
+    {
+        return _mapper.Map<AcessoModel>(await _acessoRepository.ObterPorGuidUsuario(guidUsuario));
+    }
 }

@@ -35,10 +35,13 @@
                 <div class="collapse navbar-collapse justify-content-between" id="mainNavbar">
                     <ul class="navbar-nav flex-grow-1"></ul>
 
-                    <!-- Login/Sair -->
                     <div>
                         @if (User.Identity != null && User.Identity.IsAuthenticated)
                         {
+                            <span class="me-3">
+                                <i class="me-2 fas fa-circle-user"></i>@UserSessionHelper.Nome
+                            </span>
+
                             <a class="btn btn-primary text-white" asp-area="" asp-controller="Login"
                                 asp-action="Sair">Sair</a>
                         }
@@ -89,7 +92,7 @@
                 tipo: "@TempData["TipoModal"]",
                 mensagem: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["MensagemModal"])),
                 camposInvalidos: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["CamposInvalidos"]))
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    };
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            };
 
             showFeedbackModal(modalData.tipo, modalData.mensagem, modalData.camposInvalidos);
         </script>

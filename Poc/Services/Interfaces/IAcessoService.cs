@@ -3,4 +3,7 @@ using Poc.Models;
 
 namespace Poc.Services.Interfaces;
 
-public interface IAcessoService : IBaseService<Acesso, AcessoModel> { }
+public interface IAcessoService : IBaseService<Acesso, AcessoModel>
+{
+    Task<AcessoModel> ObterPorGuidUsuario(Guid guidUsuario);
+}

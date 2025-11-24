@@ -37,17 +37,29 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
         else
         {
             var now = DateTime.Now;
-            await _acessoService.Atualizar(new AcessoModel
+            if (login.Acesso == null)
             {
-                GuidUsuario = login.GuidUsuario,
-                HorarioAcesso = now
-            });
+                var acesso = await _acessoService.ObterPorGuidUsuario(login.GuidUsuario);
+                if (acesso != null)
+                {
+                    login.Acesso = _mapper.Map<Acesso>(acesso);
+                    await _acessoService.Atualizar(acesso);
+                }
+
+                else await _acessoService.Inserir(
+                    new AcessoModel
+                    {
+                        GuidUsuario = login.GuidUsuario,
+                        HorarioAcesso = now
+                    });
+            }
 
             login.HorarioAcesso = now;
             await _usuarioRepository.Atualizar(login);
 
             var claims = new List<Claim>
             {
+                new Claim("Nome", login.Nome),
                 new Claim(ClaimTypes.Name, login.NomeUsuario),
                 new Claim("GuidUsuario", login.GuidUsuario.ToString())
             };

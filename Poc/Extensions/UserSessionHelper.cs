@@ -12,7 +12,7 @@ public static class UserSessionHelper
 
     public static string UserName =>
         _httpContextAccessor?.HttpContext?.User?.Identity?.Name ?? string.Empty;
-
+    public static string Nome => GetClaim("Nome");
     public static string GetClaim(string claimType) =>
         _httpContextAccessor?.HttpContext?.User?.Claims
             .FirstOrDefault(c => c.Type == claimType)?.Value ?? string.Empty;

@@ -28,7 +28,7 @@ public class LoginController : BaseController
             return RedirectToAction("Index");
         }
 
-        HttpContext.Session.SetString("UsuarioNome", usuario.NomeUsuario);
+        HttpContext.Session.SetString("NomeUsuario", usuario.NomeUsuario);
 
         return RedirectToAction("Dashboard", "Poc");
     }
@@ -45,6 +45,7 @@ public class LoginController : BaseController
             return View(novoUsuario);
         }
 
+        novoUsuario.CriadoEm = DateTime.Now;
         novoUsuario.HorarioAcesso = DateTime.Now;
         var registrar = await _usuarioService.Registrar(novoUsuario);
         if (!registrar.Sucesso)

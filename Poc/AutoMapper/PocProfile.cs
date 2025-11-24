@@ -21,6 +21,7 @@ public class PocProfile : Profile
         .ForMember(c => c.NomeUsuario, opt => opt.MapFrom(cm => cm.NomeUsuario))
         .ForMember(c => c.Email, opt => opt.MapFrom(cm => cm.Email))
         .ForMember(c => c.Senha, opt => opt.MapFrom(cm => cm.Senha))
+        .ForMember(c => c.CriadoEm, opt => opt.MapFrom(cm => cm.CriadoEm))
         .ForMember(c => c.HorarioAcesso, opt => opt.MapFrom(cm => cm.HorarioAcesso))
         .ReverseMap();
     }

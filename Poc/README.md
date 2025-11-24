@@ -126,6 +126,8 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |       `-- poc_logo.svg
     |-- js
     |   `-- Vue
+    |       |-- Configuracao
+    |       |   `-- usuarios.js
     |       |-- main.js
     |       |-- Modal
     |       |   `-- feedback.js
@@ -1370,7 +1372,7 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
     |-- package.json
     `-- package-lock.json
 
-83 directories, 1258 files
+84 directories, 1259 files
 ```
 <!-- END STRUCTURE -->
 ---

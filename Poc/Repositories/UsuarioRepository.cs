@@ -12,16 +12,13 @@ public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
     {
         return await _context.Usuario
             .Where(u => u.NomeUsuario == usuario.NomeUsuario)
-            .FirstAsync();
+            .FirstOrDefaultAsync();
     }
     public async Task<Usuario> ObterPorNomeUsuarioESenha(Usuario usuario)
     {
         return await _context.Usuario
-            .Where(u => u.NomeUsuario == usuario.NomeUsuario
-                 && u.Senha == usuario.Senha
-                    || u.Email == usuario.NomeUsuario
-                        && u.Senha == usuario.Senha
-                )
+            .Where(u => (u.NomeUsuario == usuario.NomeUsuario || u.Email == usuario.NomeUsuario)
+                        && u.Senha == usuario.Senha)
             .FirstOrDefaultAsync();
     }
 }

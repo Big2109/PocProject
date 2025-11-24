@@ -18,5 +18,6 @@ public class UsuarioModel
 
     [Required(ErrorMessage = "Senha é obrigatória.")]
     public string Senha { get; set; }
+    public DateTime CriadoEm { get; set; }
     public DateTime HorarioAcesso { get; set; }
 }
