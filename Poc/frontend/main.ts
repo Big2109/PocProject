@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import Header from "./menu/components/Menu.vue";
+import Header from "./header/components/Header.vue";
 import Menu from "./menu/components/Menu.vue";
 import FeedbackModal from "./modals/components/FeedbackModal.vue";
 import ConfirmacaoModal from "./modals/components/ConfirmacaoModal.vue";
