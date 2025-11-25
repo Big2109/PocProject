@@ -221,8 +221,6 @@ button.accept-policy {
 }
 
 .body {
-  display: flex;
-  justify-content: center;
   align-items: center;
   height: 100vh;
 }
@@ -274,7 +272,7 @@ a:active {
 }
 
 #tsparticles {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -397,4 +395,9 @@ a.cancelar.btn.btn-primary:hover {
   filter: brightness(1.2);
   transform: scale(1.1);
   transition: all 0.3s ease;
+}
+
+#landing-content {
+  position: relative;
+  z-index: 10
 }

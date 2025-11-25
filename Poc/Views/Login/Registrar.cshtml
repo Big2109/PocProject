@@ -6,38 +6,34 @@
 
 @model UsuarioModel
 <div class="body">
-    <div id="particles">
-        <div id="tsparticles">
-            <h2 class="py-2 text-center" style="position: relative; z-index:10; color: #fff">
-                Registre-se e faça parte da nossa aplicação !</h2>
-            <div class="d-flex justify-content-center py-4 px-2">
-                <div class="card p-4">
-                    <form asp-action="Registrar" method="post">
-                        <div class="mb-3 card-text">
-                            <label asp-for="Nome" class="form-label"></label>
-                            <input asp-for="Nome" class="form-control" />
-                        </div>
-                        <div class="mb-3 card-text">
-                            <label asp-for="NomeUsuario" class="form-label"> Nome do usuário </label>
-                            <input asp-for="NomeUsuario" class="form-control" />
-                        </div>
-
-                        <div class="mb-3 card-text">
-                            <label asp-for="Email" class="form-label"></label>
-                            <input asp-for="Email" class="form-control" type="email" />
-                        </div>
-
-                        <div class="mb-3 card-text">
-                            <label asp-for="Senha" class="form-label"></label>
-                            <input asp-for="Senha" class="form-control" type="password" />
-                        </div>
-
-                        <div class="py-2 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">Registrar</button>
-                        </div>
-                    </form>
+    <h2 class="py-2 text-center" style="position: relative; z-index:10; color: #fff">
+        Registre-se e faça parte da nossa aplicação !</h2>
+    <div class="d-flex justify-content-center py-4 px-2">
+        <div class="card p-4">
+            <form asp-action="Registrar" method="post">
+                <div class="mb-3 card-text">
+                    <label asp-for="Nome" class="form-label"></label>
+                    <input asp-for="Nome" class="form-control" />
                 </div>
-            </div>
+                <div class="mb-3 card-text">
+                    <label asp-for="NomeUsuario" class="form-label"> Nome do usuário </label>
+                    <input asp-for="NomeUsuario" class="form-control" />
+                </div>
+
+                <div class="mb-3 card-text">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" type="email" />
+                </div>
+
+                <div class="mb-3 card-text">
+                    <label asp-for="Senha" class="form-label"></label>
+                    <input asp-for="Senha" class="form-control" type="password" />
+                </div>
+
+                <div class="py-2 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

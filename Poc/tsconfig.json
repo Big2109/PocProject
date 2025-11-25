@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "strict": true,
+        "types": [
+            "node"
+        ],
+        "moduleResolution": "Node",
+        "jsx": "preserve",
+        "sourceMap": true,
+        "lib": [
+            "ESNext",
+            "DOM"
+        ],
+        "isolatedModules": true,
+        "esModuleInterop": true
+    },
+    "include": [
+        "frontend"
+    ]
+}

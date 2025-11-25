@@ -28,7 +28,7 @@
     <ProjectReference Include="..\Migrations\Migrations.csproj" />
   </ItemGroup>
 
-  <Target Name="UpdateReadme" AfterTargets="Build">
+  <!-- <Target Name="UpdateReadme" AfterTargets="Build">
     <Exec Command="bash ./update-readme.sh" />
-  </Target>
+  </Target> -->
 </Project>
