@@ -11,7 +11,7 @@
 }
 
 .login-btn {
-    @apply text-white text-center bg-gray500 border-gray600 w-[140px] px-4 py-2 rounded hover:bg-[#5670c7] transition-colors duration-200;
+    @apply text-white text-center bg-gray500 border-gray600 w-[140px] px-4 py-2 rounded hover:bg-blue transition-colors duration-200;
 }
 
 label {
@@ -19,7 +19,7 @@ label {
 }
 
 input {
-    @apply bg-gray300 border border-gray400 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#5670c7];
+    @apply bg-gray300 border border-gray400 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue;
 }
 
 .modal {

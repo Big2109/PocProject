@@ -14,6 +14,7 @@ module.exports = {
         gray500: '#525252', // texto secundário
         gray400: '#737373', // texto menos importante
         gray300: '#A3A3A3', // texto leve / legendas
+        blue: '#5670c7'
       }
     }
   },
