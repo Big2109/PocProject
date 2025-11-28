@@ -19,7 +19,7 @@ label {
 }
 
 input {
-    @apply border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+    @apply bg-gray300 border border-gray400 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#5670c7];
 }
 
 .modal {

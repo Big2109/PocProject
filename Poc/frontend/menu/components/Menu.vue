@@ -1,47 +1,29 @@
 <template>
-    <div :class="{ expanded: expanded }">
-        <div @click="toggleMenu">
-            ☰
-        </div>
+    <div class="flex h-screen">
 
-        <ul>
-            <li v-for="item in items" :key="item.title">
-                <a :href="item.link">
-                    <strong>{{ item.title }}</strong>
-                    <p>{{ item.description }}</p>
+        <!-- SIDEBAR -->
+        <aside
+            class="group bg-gray600 text-white py-5 space-y-4 hidden md:block
+                   w-[80px] hover:w-[270px] transition-all duration-300 overflow-hidden">
+
+            <nav class="flex flex-col space-y-2">
+
+                <!-- ITEM DO MENU -->
+                <a href="/configuracao/usuarios"
+                   class="text-gray300 flex items-center gap-3 py-4 pl-2 rounded-lg hover:bg-gray700 transition-all duration-200">
+
+                    <!-- ÍCONE (sempre visível) -->
+                    <i class="fas fa-users fa-2x"></i>
+
+                    <!-- TEXTO (só aparece no hover da sidebar) -->
+                    <h2 class="mb-0 whitespace-nowrap opacity-0 group-hover:opacity-100
+                               transition-opacity duration-300">
+                        Usuários
+                    </h2>
                 </a>
-            </li>
-        </ul>
+
+            </nav>
+        </aside>
+
     </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-
-interface MenuItem {
-    title: string;
-    description: string;
-    link: string;
-}
-
-export default defineComponent({
-    name: "Menu",
-
-    setup() {
-        const expanded = ref(false);
-
-        const items = ref<MenuItem[]>([
-            { title: "Dashboard", description: "Resumo geral do sistema.", link: "/Poc/dashboard" },
-            { title: "Usuários", description: "Gerencie contas e permissões.", link: "/Configuracao/usuarios" },
-            { title: "Relatórios", description: "Acompanhe indicadores.", link: "/Poc/relatorios" },
-            { title: "Configurações", description: "Ajuste preferências do sistema.", link: "/Poc/config" },
-        ]);
-
-        const toggleMenu = () => {
-            expanded.value = !expanded.value;
-        };
-
-        return { expanded, items, toggleMenu };
-    }
-});
-</script>
