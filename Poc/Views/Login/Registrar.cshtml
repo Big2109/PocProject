@@ -5,7 +5,7 @@
 }
 
 @model UsuarioModel
-<div class="body">
+@* <div class="body">
     <h2 class="py-2 text-center" style="position: relative; z-index:10; color: #fff">
         Registre-se e faça parte da nossa aplicação !</h2>
     <div class="d-flex justify-content-center py-4 px-2">
@@ -36,4 +36,36 @@
             </form>
         </div>
     </div>
-</div>
+</div> *@
+<section>
+    <div class="flex-column relative top-[90px]">
+        <h1 class="text-center">Registre-se e faça parte da nossa aplicação !</h1>
+    </div>
+    <div class="flex items-center flex-column justify-center min-h-screen">
+        <div class="card h-[450px] w-[450px] text-center">
+            <form asp-action="Registrar" method="post" class="flex flex-col gap-4 w-full max-w-md mx-auto px-4 sm:px-3">
+                <div class="flex flex-col">
+                    <label asp-for="Nome">Nome</label>
+                    <input asp-for="Nome" type="text" />
+                </div>
+                <div class="flex flex-col">
+                    <label asp-for="NomeUsuario">Nome do usuário</label>
+                    <input asp-for="NomeUsuario" type="text" />
+                </div>
+                <div class="flex flex-col">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" type="email" />
+                </div>
+                <div class="flex flex-col">
+                    <label asp-for="Senha"></label>
+                    <input asp-for="Senha" type="password" />
+                </div>
+                <div class="flex flex-column justify-center py-4">
+                    <button type="submit" class="login-btn bg-gray400">
+                        Registrar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

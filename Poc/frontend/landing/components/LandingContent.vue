@@ -4,7 +4,7 @@
             <h1>Bem-vindo à nossa aplicação!</h1>
             <h2>Uma POC moderna com .NET e Vue.js. Explore nossos recursos abaixo.</h2>
             <div class="max-w-3xl mx-auto">
-                <div class="card max-w-screen-sm text-colortextlight" v-for="f in features" :key="f.title">
+                <div class="card-hover max-w-screen-sm text-colortextlight" v-for="f in features" :key="f.title">
                     <h3>{{ f.title }}</h3>
                     <p>{{ f.description }}</p>
                 </div>

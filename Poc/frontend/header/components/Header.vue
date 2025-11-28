@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
 
 interface LoginStatus {
@@ -33,6 +33,20 @@ export default defineComponent({
     return { isAuthenticated, userName };
   },
 });
+</script> -->
+
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
+  setup() {
+    const isAuthenticated = ref((window as any).__USER__?.isAuthenticated ?? false);
+    const userName = ref((window as any).__USER__?.name ?? "");
+    const show = ref((window as any).__USER__?.show ?? true);
+
+    return { isAuthenticated, userName, show };
+  }
+});
 </script>
 
 <template>
@@ -52,15 +66,17 @@ export default defineComponent({
       </button>
     </div>
     <div class="hidden lg:flex">
-      <template v-if="isAuthenticated">
-        <span class="d-flex mx-5 my-auto text-white">
-          <i class="pr-1 fas fa-user-circle"></i>
-          {{ userName }}
-        </span>
-        <a href="/login/sair" class="login-btn">Sair</a>
-      </template>
-      <template v-else>
-        <a href="/login" class="login-btn">Login</a>
+      <template v-if="show">
+        <template v-if="isAuthenticated">
+          <span class="d-flex mx-5 my-auto text-white">
+            <i class="pr-1 fas fa-user-circle"></i>
+            {{ userName }}
+          </span>
+          <a href="/login/sair" class="login-btn">Sair</a>
+        </template>
+        <template v-else>
+          <a href="/login" class="login-btn">Login</a>
+        </template>
       </template>
     </div>
   </nav>
@@ -93,11 +109,13 @@ export default defineComponent({
                 <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Company</a>
               </div>
               <div class="py-6 flex flex-col items-center gap-4">
-                <template v-if="isAuthenticated">
-                  <a href="/login/sair" class="login-btn">Sair</a>
-                </template>
-                <template v-else>
-                  <a href="/login" class="login-btn">Login</a>
+                <template v-if="show">
+                  <template v-if="isAuthenticated">
+                    <a href="/login/sair" class="login-btn">Sair</a>
+                  </template>
+                  <template v-else>
+                    <a href="/login" class="login-btn">Login</a>
+                  </template>
                 </template>
               </div>
             </div>

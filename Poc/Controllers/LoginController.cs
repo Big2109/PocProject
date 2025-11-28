@@ -14,23 +14,8 @@ public class LoginController : BaseController
     }
     public IActionResult Index()
     {
-        TempData.Keep();
+        TempData["Exibir"] = false;
         return View();
-    }
-
-    public async Task<IActionResult> IsLogged()
-    {
-        if (User.Identity == null)
-        {
-            Erro("User identity nulo.");
-            return RedirectToAction("Index");
-        }
-
-        return Ok(new
-        {
-            isLogged = User.Identity.IsAuthenticated,
-            userName = User.Identity.Name ?? ""
-        });
     }
 
     [HttpPost]

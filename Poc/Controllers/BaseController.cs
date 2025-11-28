@@ -29,15 +29,13 @@ public class BaseController : Controller
             TempData["CamposInvalidos"] = new List<string>();
         }
 
-        TempData["TipoModal"] = tipo;
-        TempData["MensagemModal"] = mensagem;
-        TempData["ExibirModal"] = "feedback";
+        TempData["TipoMensagem"] = tipo;
+        TempData["Mensagem"] = mensagem;
     }
 
     protected void ConfirmacaoModal(string mensagem = null)
     {
-        TempData["ExibirModal"] = "confirmacao";
-        TempData["MensagemModal"] = mensagem;
+        TempData["Mensagem"] = mensagem;
     }
 
     protected void Erro(string mensagem) => MensagemModal("erro", mensagem);
