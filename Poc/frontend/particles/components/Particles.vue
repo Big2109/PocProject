@@ -14,7 +14,7 @@ export default defineComponent({
       const options = {
         background: {
           color: {
-            value: "#0f0d40"
+            value: "#121212"
           }
         },
         fpsLimit: 60,
@@ -23,12 +23,12 @@ export default defineComponent({
             value: 65,
             density: { enable: true, area: 600 }
           },
-          color: { value: "#ffffff" },
+          color: { value: "#ccc" },
           shape: { type: "circle" },
           opacity: { value: 0.1 },
           size: { value: { min: 1, max: 4 } },
           move: { enable: true, speed: 1, direction: "none", outModes: { default: "bounce" } },
-          links: { enable: true, distance: 140, color: "#ffffff", opacity: 0.1, width: 1 }
+          links: { enable: true, distance: 140, color: "#ccc", opacity: 0.1, width: 1 }
         },
         interactivity: {
           events: {
@@ -56,7 +56,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <div id="particles">
-     <div id="tsparticles"></div>
-  </div>
+     <div id="tsparticles" class="absolute inset-0 -z-10"></div>
 </template>
