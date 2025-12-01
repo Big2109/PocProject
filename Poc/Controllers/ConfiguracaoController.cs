@@ -22,19 +22,24 @@ public class ConfiguracaoController : BaseController
     public async Task<IActionResult> Usuarios()
     {
         TempData.Keep();
-        return View(new UsuariosViewModel(await _usuarioService.Listar()));
+        return View("Usuarios", new UsuariosViewModel(await _usuarioService.Listar()));
     }
 
     [HttpGet("novo-usuario")]
     public async Task<IActionResult> NovoUsuario()
     {
-        return PartialView(new UsuariosViewModel(await _usuarioService.Listar()));
+        TempData["NovoUsuario"] = true;
+        return await Usuarios();
     }
 
     [HttpPost("novo-usuario")]
     public async Task<IActionResult> NovoUsuario(UsuarioModel novoUsuario)
     {
-        if (!ModelState.IsValid) Erro(string.Empty);
+        if (!ModelState.IsValid)
+        {
+            Erro(string.Empty);
+            return await Usuarios();
+        }
 
         else
         {
@@ -58,6 +63,6 @@ public class ConfiguracaoController : BaseController
     {
         await _usuarioService.DeletarUsuario(guidUsuario);
         Sucesso("Usuário deletado com sucesso!");
-        return RedirectToAction("Usuarios");
+        return await Usuarios();
     }
 }

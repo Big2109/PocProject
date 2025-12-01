@@ -53,6 +53,7 @@ async function confirm(route: string): Promise<void> {
     }
     else {
       show.value = false;
+      window.location.href = '/configuracao/usuarios';
     }
   } catch (err) {
     console.error(err)

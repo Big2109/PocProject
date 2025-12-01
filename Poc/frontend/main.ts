@@ -5,6 +5,7 @@ import LandingContent from "./landing/components/LandingContent.vue";
 import Particles from "./particles/components/Particles.vue";
 import Feedback from "./modals/components/Feedback.vue";
 import Confirmacao from "./modals/components/Confirmacao.vue";
+import NovoUsuario from "./modals/components/NovoUsuario.vue";
 
 import "./main.css"; // Tailwind
 
@@ -30,3 +31,6 @@ feedback.mount("#FeedbackApp");
 
 const confirmacao = createApp(Confirmacao);
 confirmacao.mount("#ConfirmacaoApp");
+
+const novoUsuario = createApp(NovoUsuario);
+novoUsuario.mount("#NovoUsuarioApp");
