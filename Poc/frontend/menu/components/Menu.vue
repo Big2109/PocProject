@@ -6,6 +6,11 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
+    {
+    label: "Dashboard",
+    icon: "fas fa-chart-pie fa-2x",
+    href: "/poc/dashboard",
+  },
   {
     label: "Usuários",
     icon: "fas fa-users fa-2x",
@@ -25,7 +30,7 @@ const menuItems: MenuItem[] = [
 </script>
 
 <template>
-  <div class="flex h-screen">
+  <div class="absolute flex h-screen">
     <aside
       class="group bg-gray600 text-white py-3 space-y-4
              w-[70px] hover:w-[240px] transition-all duration-300 overflow-hidden">
@@ -37,7 +42,7 @@ const menuItems: MenuItem[] = [
           class="group flex items-center gap-3 m-0 p-3
                  text-gray300 hover:bg-gray700 transition-all duration-200">
 
-          <i :class="item.icon + ' group-hover:text-blue transition-colors duration-200'"></i>
+          <i :class="item.icon + ' pl-1 group-hover:text-blue transition-colors duration-200'"></i>
 
           <h3 class="mb-0 whitespace-nowrap opacity-0 group-hover:opacity-100
                      group-hover:text-blue transition-all duration-300">

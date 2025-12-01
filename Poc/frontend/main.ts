@@ -4,6 +4,7 @@ import Menu from "./menu/components/Menu.vue";
 import LandingContent from "./landing/components/LandingContent.vue";
 import Particles from "./particles/components/Particles.vue";
 import Feedback from "./modals/components/Feedback.vue";
+import Confirmacao from "./modals/components/Confirmacao.vue";
 
 import "./main.css"; // Tailwind
 
@@ -23,5 +24,9 @@ landingApp.mount("#LandingApp");
 const particlesApp = createApp(Particles);
 particlesApp.mount("#ParticlesApp");
 
+// Modals
 const feedback = createApp(Feedback);
 feedback.mount("#FeedbackApp");
+
+const confirmacao = createApp(Confirmacao);
+confirmacao.mount("#ConfirmacaoApp");

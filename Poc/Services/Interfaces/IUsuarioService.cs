@@ -7,4 +7,5 @@ public interface IUsuarioService : IBaseService<Usuario, UsuarioModel>
 {
     Task<ValidacaoModel> Login(UsuarioModel usuario);
     Task<ValidacaoModel> Registrar(UsuarioModel usuario);
+    Task DeletarUsuario(Guid guidUsuario);
 }

@@ -41,9 +41,4 @@ public class BaseController : Controller
     protected void Erro(string mensagem) => MensagemModal("erro", mensagem);
     protected void Sucesso(string mensagem) => MensagemModal("sucesso", mensagem);
     protected void Alerta(string mensagem = null) => MensagemModal("alerta", mensagem);
-    public IActionResult Confirmacao(string mensagem)
-    {
-        ConfirmacaoModal(mensagem);
-        return Redirect(Request.Headers["Referer"].ToString());
-    }
 }

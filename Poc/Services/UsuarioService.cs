@@ -109,4 +109,12 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
 
         return validar;
     }
+    public async Task DeletarUsuario(Guid guidUsuario)
+    {
+        var acesso = await _acessoService.ObterPorGuidUsuario(guidUsuario);
+        if (acesso is not null) await _acessoService.Deletar(acesso);
+
+        var usuario = await _usuarioRepository.ObterPorId(guidUsuario);
+        await _usuarioRepository.Deletar(usuario);
+    }
 }

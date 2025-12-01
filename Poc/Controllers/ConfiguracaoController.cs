@@ -5,6 +5,7 @@ using Poc.ViewModels;
 
 namespace Poc.Controllers;
 
+[Route("configuracao")]
 public class ConfiguracaoController : BaseController
 {
     private readonly IUsuarioService _usuarioService;
@@ -14,21 +15,23 @@ public class ConfiguracaoController : BaseController
     }
     public IActionResult Index()
     {
-        TempData.Keep();
         return View();
     }
 
+    [HttpGet("usuarios")]
     public async Task<IActionResult> Usuarios()
     {
+        TempData.Keep();
         return View(new UsuariosViewModel(await _usuarioService.Listar()));
     }
 
+    [HttpGet("novo-usuario")]
     public async Task<IActionResult> NovoUsuario()
     {
-        return View(new UsuariosViewModel(await _usuarioService.Listar()));
+        return PartialView(new UsuariosViewModel(await _usuarioService.Listar()));
     }
 
-    [HttpPost]
+    [HttpPost("novo-usuario")]
     public async Task<IActionResult> NovoUsuario(UsuarioModel novoUsuario)
     {
         if (!ModelState.IsValid) Erro(string.Empty);
@@ -50,9 +53,11 @@ public class ConfiguracaoController : BaseController
         return RedirectToAction("Usuarios");
     }
 
-    [HttpPost, Route("deletar-usuario")]
-    public async Task<IActionResult> DeletarUsuario(Guid guidUsuario)
+    [HttpPost("deletar-usuario/{guidUsuario:guid}")]
+    public async Task<IActionResult> DeletarUsuario([FromRoute] Guid guidUsuario)
     {
+        await _usuarioService.DeletarUsuario(guidUsuario);
+        Sucesso("Usuário deletado com sucesso!");
         return RedirectToAction("Usuarios");
     }
 }

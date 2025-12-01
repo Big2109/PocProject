@@ -15,7 +15,6 @@ public class BaseService<TEntity, TModel>
         _repository = repository;
         _mapper = mapper;
     }
-
     public async Task<List<TModel>> Listar()
     {
         var entities = await _repository.Listar();
@@ -34,5 +33,11 @@ public class BaseService<TEntity, TModel>
         var entity = _mapper.Map<TEntity>(model);
         var updated = await _repository.Atualizar(entity);
         return _mapper.Map<TModel>(updated);
+    }
+
+    public async Task Deletar(TModel model)
+    {
+        var entity = _mapper.Map<TEntity>(model);
+        await _repository.Deletar(entity);
     }
 }
