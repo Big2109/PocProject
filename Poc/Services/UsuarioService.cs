@@ -103,7 +103,7 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
         var acesso = await _acessoService.ObterPorGuidUsuario(guidUsuario);
         if (acesso is not null) await _acessoService.Deletar(acesso);
 
-        var usuario = await _usuarioRepository.ObterPorId(guidUsuario);
+        var usuario = await _usuarioRepository.ObterPorGuid(guidUsuario);
         await _usuarioRepository.Deletar(usuario);
 
         return ServicoResultado.Ok();

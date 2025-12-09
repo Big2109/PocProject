@@ -15,7 +15,7 @@
             icon,
             selectedIcon === icon
               ? 'fa-3x text-gray300 scale-110'
-              : 'fa-3x text-gray500 opacity-60 hover:opacity-100 hover:scale-110'
+              : 'fa-3x text-gray500 opacity-60 hover:opacity-100 hover:scale-110 duration-200'
           ]"
           :style="selectedIcon === icon ? { color: selectedColor } : {}"
         ></i>
@@ -30,7 +30,7 @@
         v-for="color in colors"
         :key="color"
         :style="{ backgroundColor: color }"
-        class="w-12 h-12 rounded-lg cursor-pointer border-2 transition-transform transform hover:scale-110"
+        class="w-12 h-12 rounded-lg cursor-pointer border-2 transition-all transform hover:scale-110 duration-200"
         :class="selectedColor === color ? 'border-black scale-110' : 'border-transparent'"
         @click="selectColor(color)"
       ></div>

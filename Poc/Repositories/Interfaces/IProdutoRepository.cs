@@ -2,4 +2,7 @@ using Migrations.Entities;
 
 namespace Poc.Repositories.Interfaces;
 
-public interface IProdutoRepository : IBaseRepository<Produto> { }
+public interface IProdutoRepository : IBaseRepository<Produto>
+{
+    Task<Produto> ObterPorGuid(Guid guidProduto);
+}

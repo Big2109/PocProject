@@ -9,7 +9,7 @@ public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
 {
     public UsuarioRepository(Context context) : base(context) { }
 
-    public async Task<Usuario> ObterPorId(Guid guidUsuario)
+    public async Task<Usuario> ObterPorGuid(Guid guidUsuario)
     {
         return await _context.Usuario
             .Where(u => u.GuidUsuario == guidUsuario)

@@ -38,4 +38,35 @@ public class ProdutoController : BaseController
         Sucesso($"Novo produto criado com sucesso!");
         return RedirectToAction("Index");
     }
+
+    public async Task<IActionResult> EditarProduto(Guid guidProduto)
+    {
+        var model = await _produtoService.ObterPorGuid(guidProduto);
+        return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EditarProduto([FromForm] ProdutoModel produto)
+    {
+        if (!ModelState.IsValid)
+        {
+            Erro(string.Empty);
+            return RedirectToAction("CriarProduto");
+        }
+
+        var novo = await _produtoService.CriarProduto(produto);
+        if (!novo.Sucesso) Erro(novo.Erros.FirstOrDefault() ?? "");
+
+        Sucesso($"Novo produto criado com sucesso!");
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeletarProduto([FromQuery] Guid guidProduto)
+    {
+        var deletado = await _produtoService.DeletarProduto(guidProduto);
+        if (!deletado.Sucesso) Erro(deletado.Erros.FirstOrDefault() ?? "");
+        else Sucesso("Produto deletado com sucesso!");
+        return RedirectToAction("Index");
+    }
 }

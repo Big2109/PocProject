@@ -15,6 +15,10 @@ public class ProdutoService : BaseService<Produto, ProdutoModel>, IProdutoServic
         _produtoRepository = produtoRepository;
     }
 
+    public async Task<ProdutoModel> ObterPorGuid(Guid guidProduto)
+    {
+        return _mapper.Map<ProdutoModel>(await _produtoRepository.ObterPorGuid(guidProduto));
+    }
     public async Task<ServicoResultado> CriarProduto(ProdutoModel produto)
     {
         produto.GuidProduto = Guid.NewGuid();
@@ -24,6 +28,14 @@ public class ProdutoService : BaseService<Produto, ProdutoModel>, IProdutoServic
 
         var novo = await Inserir(produto);
         if (novo == null) return ServicoResultado.Falha("Erro interno");
+
+        return ServicoResultado.Ok();
+    }
+
+    public async Task<ServicoResultado> DeletarProduto(Guid guidProduto)
+    {
+        var produto = await _produtoRepository.ObterPorGuid(guidProduto);
+        await _produtoRepository.Deletar(produto);
 
         return ServicoResultado.Ok();
     }

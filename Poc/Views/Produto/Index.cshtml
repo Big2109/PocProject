@@ -20,7 +20,7 @@
                 @foreach (var produto in Model.Produtos.OrderBy(p => p.CriadoEm))
                 {
                     <li>
-                        <a id="@produto.GuidProduto"
+                        <a asp-controller="Produto" asp-action="EditarProduto" asp-route-guidProduto="@produto.GuidProduto"
                             class="card-produto text-[@produto.CorHex] hover:border-[@produto.CorHex]">
                             <h3 class="text-[@produto.CorHex]">@produto.Nome</h3>
                             <span>
