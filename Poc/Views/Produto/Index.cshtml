@@ -1,0 +1,35 @@
+@using Poc.ViewModels
+@model ProdutosViewModel
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<aside class="flex h-screen ml-[240px]">
+    <div class="card-static w-full overflow-x-auto overflow-y-auto">
+        <div class="flex w-full justify-end mb-5">
+            <a class="min-w-[170px] login-btn" href="Produto/CriarProduto">
+                <span class="mr-2">
+                    <i class="fas fa-people-carry-box"></i>
+                </span>
+                Criar produto
+            </a>
+        </div>
+        <div class="w-full overflow-x-auto">
+            <ul class="flex space-x-4 py-4">
+                @foreach (var produto in Model.Produtos.OrderBy(p => p.CriadoEm))
+                {
+                    <li>
+                        <a id="@produto.GuidProduto"
+                            class="card-produto text-[@produto.CorHex] hover:border-[@produto.CorHex]">
+                            <h3 class="text-[@produto.CorHex]">@produto.Nome</h3>
+                            <span>
+                                <i class="@produto.Icone fa-3x"></i>
+                            </span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</aside>

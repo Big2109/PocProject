@@ -1,0 +1,37 @@
+@using Poc.Models
+@model UsuarioModel
+
+<div id="NovoUsuarioModal" class="modal d-none">
+    <div class="card h-[470px] w-[450px] text-center">
+        <div class="flex justify-end">
+            <button onclick="window.HideModal('NovoUsuarioModal')"
+                class="top-2 right-3 text-gray400 text-xl hover:text-gray300">
+                &times;
+            </button>
+        </div>
+        <form asp-controller="Configuracao" asp-action="novo-usuario" method="post"
+            class="flex flex-col gap-4 w-full max-w-md mx-auto px-4 sm:px-3">
+            <div class="flex flex-col">
+                <label asp-for="Nome">Nome</label>
+                <input asp-for="Nome" type="text" />
+            </div>
+            <div class="flex flex-col">
+                <label asp-for="NomeUsuario">Nome do usuário</label>
+                <input asp-for="NomeUsuario" type="text" />
+            </div>
+            <div class="flex flex-col">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" type="email" />
+            </div>
+            <div class="flex flex-col">
+                <label asp-for="Senha">Senha</label>
+                <input asp-for="Senha" type="password" />
+            </div>
+            <div class="flex flex-column justify-center py-4">
+                <button type="submit" class="login-btn bg-gray400">
+                    Registrar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-static {
+    @apply bg-gray700 shadow-xl rounded-xl transition-all duration-200 p-5 mt-20;
+}
+
+.card {
+    @apply bg-gray800 border-2 border-gray700 shadow-xl rounded-xl transition-all duration-200 p-5 m-5;
+}
+
+.card-hover {
+    @apply bg-gray700 hover:bg-gradient-to-r hover:from-gray700 hover:to-gray500 border-2 border-gray600 shadow-xl rounded-xl transition-all duration-200 p-5 m-5;
+}
+
+.card-produto {
+    @apply flex-none w-40 h-40 flex items-center justify-center border border-gray600 rounded-xl flex-col cursor-pointer transition-all duration-200 hover:brightness-110 hover:scale-105 hover:bg-gradient-to-r hover:from-gray700 hover:to-gray500;
+}
+
+.login-btn {
+    @apply text-white text-center bg-gray500 border-gray600 w-[140px] px-4 py-2 cursor-pointer rounded hover:bg-blue transition-colors duration-200;
+}
+
+.confirm-btn {
+    @apply text-white text-center bg-blue border-gray600 w-[140px] px-2 py-2 rounded hover:brightness-110 transition-colors duration-200;
+}
+
+.cancel-btn {
+    @apply text-white text-center bg-gray500 border-gray600 w-[140px] px-2 py-2 rounded hover:bg-red-500 transition-colors duration-200;
+}
+
+label {
+    @apply mb-1 text-start text-gray500
+}
+
+input {
+    @apply bg-[#fff] border border-gray400 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue;
+}
+
+.modal {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50;
+}
+
+table {
+    @apply min-w-[230px] w-full;
+}
+
+th {
+    @apply p-3 border-b border-gray400 text-gray400;
+}
+
+td {
+    @apply text-center p-4 border-b border-gray300 text-gray300;
+}
+
+@layer base {
+    h1 {
+        @apply text-white text-4xl font-bold mb-4;
+    }
+
+    h2 {
+        @apply text-gray300 text-3xl font-semibold mb-3;
+    }
+
+    h3 {
+        @apply text-white text-2xl font-medium mb-2;
+    }
+
+    p {
+        @apply text-gray300 leading-relaxed;
+    }
+
+    a {
+        @apply m-3
+    }
+}
+
+@layer utilities {
+    .d-none {
+        display: none !important;
+    }
+}

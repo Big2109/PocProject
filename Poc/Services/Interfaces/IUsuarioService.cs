@@ -5,6 +5,7 @@ namespace Poc.Services.Interfaces;
 
 public interface IUsuarioService : IBaseService<Usuario, UsuarioModel>
 {
-    Task<ValidacaoModel> Login(UsuarioModel usuario);
-    Task<ValidacaoModel> Registrar(UsuarioModel usuario);
+    Task<ServicoResultado<UsuarioModel>> Login(UsuarioModel usuario);
+    Task<ServicoResultado<UsuarioModel>> Registrar(UsuarioModel usuario);
+    Task<ServicoResultado> DeletarUsuario(Guid guidUsuario);
 }

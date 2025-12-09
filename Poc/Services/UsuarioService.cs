@@ -13,100 +13,99 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IValidacaoService _validacaoService;
     private readonly IAcessoService _acessoService;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper, IValidacaoService validacaoService, IAcessoService acessoService, IHttpContextAccessor httpContextAccessor)
-        : base(usuarioRepository, mapper)
+    public UsuarioService(IUsuarioRepository usuarioRepository,
+        IMapper mapper,
+        IValidacaoService validacaoService,
+        IAcessoService acessoService,
+        IHttpContextAccessor httpContextAccessor) : base(usuarioRepository, mapper, httpContextAccessor)
     {
         _usuarioRepository = usuarioRepository;
         _validacaoService = validacaoService;
         _acessoService = acessoService;
-        _httpContextAccessor = httpContextAccessor;
     }
-    public async Task<ValidacaoModel> Login(UsuarioModel usuario)
+    public async Task<ServicoResultado<UsuarioModel>> Login(UsuarioModel usuario)
     {
-        var validar = await _validacaoService.ValidarLoginUsuario(usuario);
-        if (!validar.Sucesso) return validar;
+        var nomeUsuario = await _validacaoService.ValidarNomeUsuario(usuario);
+        if (!nomeUsuario.Sucesso) return nomeUsuario;
+
+        var senha = await _validacaoService.ValidarSenha(usuario);
+        if (!senha.Sucesso) return senha;
 
         var login = await _usuarioRepository.ObterPorNomeUsuarioESenha(_mapper.Map<Usuario>(usuario));
-        if (login == null)
-        {
-            validar.Mensagem.Add("Senha ou usuário incorreto(s).");
-            validar.Sucesso = false;
-            return validar;
-        }
-        else
-        {
-            var now = DateTime.Now;
-            if (login.Acesso == null)
-            {
-                var acesso = await _acessoService.ObterPorGuidUsuario(login.GuidUsuario);
-                if (acesso != null)
-                {
-                    login.Acesso = _mapper.Map<Acesso>(acesso);
-                    await _acessoService.Atualizar(acesso);
-                }
+        if (login == null) return ServicoResultado<UsuarioModel>.Falha("Senha ou usuário incorreto(s).");
 
-                else await _acessoService.Inserir(
-                    new AcessoModel
-                    {
-                        GuidUsuario = login.GuidUsuario,
-                        HorarioAcesso = now
-                    });
+
+        var now = DateTime.Now;
+        if (login.Acesso == null)
+        {
+            var acesso = await _acessoService.ObterPorGuidUsuario(login.GuidUsuario);
+            if (acesso != null)
+            {
+                login.Acesso = _mapper.Map<Acesso>(acesso);
+                await _acessoService.Atualizar(acesso);
             }
 
-            login.HorarioAcesso = now;
-            await _usuarioRepository.Atualizar(login);
+            else await _acessoService.Inserir(
+                new AcessoModel
+                {
+                    GuidUsuario = login.GuidUsuario,
+                    HorarioAcesso = now
+                });
+        }
 
-            var claims = new List<Claim>
+        login.HorarioAcesso = now;
+        await _usuarioRepository.Atualizar(login);
+
+        var claims = new List<Claim>
             {
                 new Claim("Nome", login.Nome),
                 new Claim(ClaimTypes.Name, login.NomeUsuario),
                 new Claim("GuidUsuario", login.GuidUsuario.ToString())
             };
 
-            var claimsIdentity = new ClaimsIdentity(claims, "CookieAuthentication");
-            var principal = new ClaimsPrincipal(claimsIdentity);
-            var context = _httpContextAccessor.HttpContext;
-            if (context == null)
+        var claimsIdentity = new ClaimsIdentity(claims, "CookieAuthentication");
+        var principal = new ClaimsPrincipal(claimsIdentity);
+        var context = _httpContextAccessor.HttpContext;
+        if (context == null) throw new InvalidOperationException("HttpContext não está disponível");
+
+        await context.SignInAsync(
+            "CookieAuthentication",
+            principal,
+            new AuthenticationProperties
             {
-                throw new InvalidOperationException("HttpContext não está disponível");
-            }
+                IsPersistent = true,
+                ExpiresUtc = DateTime.UtcNow.AddHours(8)
+            });
 
-            await context.SignInAsync(
-                "CookieAuthentication",
-                principal,
-                new AuthenticationProperties
-                {
-                    IsPersistent = true,
-                    ExpiresUtc = DateTime.UtcNow.AddHours(8)
-                });
-
-            return validar;
-        }
+        var mapped = _mapper.Map<UsuarioModel>(login);
+        return ServicoResultado<UsuarioModel>.Ok(mapped);
     }
-    public async Task<ValidacaoModel> Registrar(UsuarioModel novoUsuario)
+    public async Task<ServicoResultado<UsuarioModel>> Registrar(UsuarioModel novoUsuario)
     {
         var validar = await _validacaoService.ValidarRegistroUsuario(novoUsuario);
         if (!validar.Sucesso) return validar;
 
-        var usuario = await _usuarioRepository.ObterPorNomeUsuario(_mapper.Map<Usuario>(novoUsuario));
-        if (usuario != null)
+        var nomeUsuario = await _usuarioRepository.ObterPorNomeUsuario(_mapper.Map<Usuario>(novoUsuario));
+        if (nomeUsuario != null) return ServicoResultado<UsuarioModel>.Falha("Nome de usuário já em uso.");
+
+        var novo = await Inserir(novoUsuario);
+
+        await _acessoService.Inserir(new AcessoModel
         {
-            validar.Sucesso = false;
-            validar.Mensagem.Add("Nome de usuário já em uso.");
-        }
+            GuidUsuario = novo.GuidUsuario,
+            HorarioAcesso = DateTime.Now
+        });
 
-        else
-        {
-            var inserido = await Inserir(novoUsuario);
+        return ServicoResultado<UsuarioModel>.Ok(novo);
+    }
+    public async Task<ServicoResultado> DeletarUsuario(Guid guidUsuario)
+    {
+        var acesso = await _acessoService.ObterPorGuidUsuario(guidUsuario);
+        if (acesso is not null) await _acessoService.Deletar(acesso);
 
-            await _acessoService.Inserir(new AcessoModel
-            {
-                GuidUsuario = inserido.GuidUsuario,
-                HorarioAcesso = DateTime.Now
-            });
-        }
+        var usuario = await _usuarioRepository.ObterPorId(guidUsuario);
+        await _usuarioRepository.Deletar(usuario);
 
-        return validar;
+        return ServicoResultado.Ok();
     }
 }

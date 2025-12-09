@@ -5,56 +5,50 @@
 }
 
 @model UsuariosViewModel
-
-<div class="body">
-    <div id="particles">
-        <div id="tsparticles">
-            <div class="d-flex justify-content-end">
-                <div class="card-dash">
-                    <div id="usuarios" class="m-3">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Nome de usuário</th>
-                                    <th>Email</th>
-                                    <th>Criado em</th>
-                                    <th>Último acesso</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var usuario in Model.Usuarios.OrderByDescending(u => u.CriadoEm))
-                                {
-                                    <tr class="alert">
-                                        <td>@usuario.Nome</td>
-                                        <td>@usuario.NomeUsuario</td>
-                                        <td>@usuario.Email</td>
-                                        <td>@usuario.CriadoEm.ToString("dd/MM/yyyy - HH:mm:ss")</td>
-                                        <td>@usuario.HorarioAcesso.ToString("dd/MM/yyyy - HH:mm:ss")</td>
-                                        <td>
-                                            <span>
-                                                <a id="deletar-usuario" asp-controller="Configuracao"
-                                                    asp-action="Confirmacao"
-                                                    asp-route-mensagem="Deseja realmente deletar este usuário?" class="btn">
-                                                    <i class="fas fa-trash-can" style="color: red"></i>
-                                                </a>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <div class="d-flex justify-content-end">
-                            <a id="novo-usuario" class="btn btn-primary text-white" data-bs-toggle="modal"
-                                data-bs-target="#modal-novo-usuario">
-                                <i class="fas fa-user-plus"></i>
-                                Novo usuário
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<aside class="flex h-screen ml-[240px]">
+    <div class="card-static w-full overflow-x-auto overflow-y-auto">
+        <div class="flex w-full justify-end mb-5">
+            <a class="min-w-[160px] login-btn" onclick="window.ShowModal('NovoUsuarioModal')">
+                <span class="mr-2">
+                    <i class="fas fa-user-plus"></i>
+                </span>
+                Novo usuário
+            </a>
         </div>
+        <table class="text-white">
+            <thead class="hidden md:table-header-group border border-gray700">
+                <tr>
+                    <th>Nome</th>
+                    <th>Nome de usuário</th>
+                    <th>Email</th>
+                    <th>Criado em</th>
+                    <th>Último acesso</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="block md:table-row-group">
+                @foreach (var usuario in Model.Usuarios.OrderByDescending(u => u.HorarioAcesso))
+                {
+                    <tr id="@usuario.GuidUsuario" class="block md:table-row mb-4 border-t border-gray600 rounded-lg p-4">
+                        <td class="block md:table-cell">@usuario.Nome</td>
+                        <td class="block md:table-cell">@usuario.NomeUsuario</td>
+                        <td class="block md:table-cell">@usuario.Email</td>
+                        <td class="block md:table-cell">@usuario.CriadoEm.ToString("dd/MM/yyyy - HH:mm:ss")</td>
+                        <td class="block md:table-cell">@usuario.HorarioAcesso.ToString("dd/MM/yyyy - HH:mm:ss")</td>
+                        <td class="block md:table-cell">
+                            @await Html.PartialAsync("_DeletarUsuarioModal", usuario.GuidUsuario)
+                            <span title="Deletar usuário">
+                                <a href="#" onclick="window.ShowModal('DeletarUsuarioModal')"
+                                    class="hover:text-red-600 transition-colors">
+                                    <i class="fas fa-trash-can"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-    @await Html.PartialAsync("_NovoUsuario", new UsuarioModel())
-</div>
+</aside>
+
+@await Html.PartialAsync("_NovoUsuarioModal", new UsuarioModel())

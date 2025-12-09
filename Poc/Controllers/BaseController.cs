@@ -24,28 +24,18 @@ public class BaseController : Controller
                 .Select(s => s.Key)
                 .ToList();
         }
-        else
-        {
-            TempData["CamposInvalidos"] = new List<string>();
-        }
+        else TempData["CamposInvalidos"] = new List<string>();
 
-        TempData["TipoModal"] = tipo;
-        TempData["MensagemModal"] = mensagem;
-        TempData["ExibirModal"] = "feedback";
+        TempData["TipoMensagem"] = tipo;
+        TempData["Mensagem"] = mensagem;
     }
 
     protected void ConfirmacaoModal(string mensagem = null)
     {
-        TempData["ExibirModal"] = "confirmacao";
-        TempData["MensagemModal"] = mensagem;
+        TempData["Mensagem"] = mensagem;
     }
 
     protected void Erro(string mensagem) => MensagemModal("erro", mensagem);
     protected void Sucesso(string mensagem) => MensagemModal("sucesso", mensagem);
     protected void Alerta(string mensagem = null) => MensagemModal("alerta", mensagem);
-    public IActionResult Confirmacao(string mensagem)
-    {
-        ConfirmacaoModal(mensagem);
-        return Redirect(Request.Headers["Referer"].ToString());
-    }
 }

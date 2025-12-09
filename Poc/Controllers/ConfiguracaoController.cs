@@ -5,6 +5,7 @@ using Poc.ViewModels;
 
 namespace Poc.Controllers;
 
+[Route("configuracao")]
 public class ConfiguracaoController : BaseController
 {
     private readonly IUsuarioService _usuarioService;
@@ -14,24 +15,31 @@ public class ConfiguracaoController : BaseController
     }
     public IActionResult Index()
     {
-        TempData.Keep();
         return View();
     }
 
+    [HttpGet("usuarios")]
     public async Task<IActionResult> Usuarios()
     {
-        return View(new UsuariosViewModel(await _usuarioService.Listar()));
+        TempData.Keep();
+        return View("Usuarios", new UsuariosViewModel(await _usuarioService.Listar()));
     }
 
+    [HttpGet("novo-usuario")]
     public async Task<IActionResult> NovoUsuario()
     {
-        return View(new UsuariosViewModel(await _usuarioService.Listar()));
+        TempData["NovoUsuario"] = true;
+        return await Usuarios();
     }
 
-    [HttpPost]
+    [HttpPost("novo-usuario")]
     public async Task<IActionResult> NovoUsuario(UsuarioModel novoUsuario)
     {
-        if (!ModelState.IsValid) Erro(string.Empty);
+        if (!ModelState.IsValid)
+        {
+            Erro(string.Empty);
+            return await Usuarios();
+        }
 
         else
         {
@@ -40,7 +48,7 @@ public class ConfiguracaoController : BaseController
             var registrar = await _usuarioService.Registrar(novoUsuario);
             if (!registrar.Sucesso)
             {
-                Erro(registrar.Mensagem.FirstOrDefault() ?? "");
+                Erro(registrar.Erros.FirstOrDefault() ?? "");
                 return View(novoUsuario);
             }
 
@@ -50,9 +58,12 @@ public class ConfiguracaoController : BaseController
         return RedirectToAction("Usuarios");
     }
 
-    [HttpPost, Route("deletar-usuario")]
-    public async Task<IActionResult> DeletarUsuario(Guid guidUsuario)
+    [HttpPost("deletar-usuario/{guidUsuario:guid}")]
+    public async Task<IActionResult> DeletarUsuario([FromRoute] Guid guidUsuario)
     {
-        return RedirectToAction("Usuarios");
+        var deletado = await _usuarioService.DeletarUsuario(guidUsuario);
+        if (!deletado.Sucesso) Erro(deletado.Erros.FirstOrDefault() ?? "");
+        else Sucesso("Usuário deletado com sucesso!");
+        return await Usuarios();
     }
 }

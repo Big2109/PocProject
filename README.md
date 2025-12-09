@@ -1,6 +1,6 @@
 # 🌐 Poc
 
-Um projeto **ASP.NET Core MVC** desenvolvido para servir como **portfólio pessoal**, com integração a um **banco de dados SQL Server** em container Docker.  
+Um projeto **ASP.NET Core MVC** desenvolvido para servir como **portfólio pessoal**, com integração a um **banco de dados SQL Server** em container Docker.
 O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+, Entity Framework Core** e boas práticas de arquitetura MVC.
 
 ---
@@ -28,167 +28,57 @@ O objetivo é demonstrar habilidades em desenvolvimento web utilizando **.NET 8+
 
 <!-- BEGIN STRUCTURE -->
 ```
-.
-|-- appsettings.Development.json
-|-- appsettings.json
 |-- AutoMapper
-|   `-- PocProfile.cs
 |-- Controllers
-|   |-- BaseController.cs
-|   |-- HomeController.cs
-|   |-- LoginController.cs
-|   `-- PocController.cs
 |-- Docker
 |-- Enums
-|   `-- Messages.cs
 |-- Extensions
-|   |-- ServiceCollectionExtensions.cs
-|   |-- WebApplicationBuilderExtensions.cs
-|   `-- WebApplicattionExtensions.cs
-|-- LICENSE
+|-- frontend
+|   |-- header
+|   |   `-- components
+|   |-- landing
+|   |   `-- components
+|   |-- menu
+|   |   `-- components
+|   |-- modals
+|   |   `-- components
+|   `-- particles
+|       `-- components
 |-- Models
-|   |-- AcessoModel.cs
-|   |-- ClienteModel.cs
-|   |-- ErrorViewModel.cs
-|   |-- UsuarioModel.cs
-|   `-- ValidacaoModel.cs
-|-- Poc.csproj
-|-- Program.cs
 |-- Properties
-|   `-- launchSettings.json
 |-- Repositories
-|   |-- AcessoRepository.cs
-|   |-- BaseRepository.cs
-|   |-- ClienteRepository.cs
-|   |-- Interfaces
-|   |   |-- IAcessoRepository.cs
-|   |   |-- IBaseRepository.cs
-|   |   |-- IClienteRepository.cs
-|   |   `-- IUsuarioRepository.cs
-|   `-- UsuarioRepository.cs
+|   `-- Interfaces
 |-- Services
-|   |-- AcessoService.cs
-|   |-- BaseService.cs
-|   |-- ClienteService.cs
-|   |-- Interfaces
-|   |   |-- IAcessoService.cs
-|   |   |-- IBaseService.cs
-|   |   |-- IClienteService.cs
-|   |   |-- IUsuarioService.cs
-|   |   `-- IValidacaoService.cs
-|   |-- UsuarioService.cs
-|   `-- ValidacaoService.cs
+|   `-- Interfaces
 |-- Settings
-|   `-- AppSettings.cs
 |-- SQL
-|   |-- docker-compose.yml
-|   |-- Poc
-|   |   |-- Procedures
-|   |   `-- Tables
-|   |       |-- Acesso.sql
-|   |       |-- Cliente.sql
-|   |       `-- Usuario.sql
-|   `-- Poc.bak
-|-- update-readme.sh
+|   `-- Poc
+|       |-- Procedures
+|       `-- Tables
+|-- ViewModels
 |-- Views
+|   |-- Configuracao
 |   |-- Home
-|   |   |-- Index.cshtml
-|   |   `-- Privacy.cshtml
 |   |-- Login
-|   |   |-- Index.cshtml
-|   |   `-- Registrar.cshtml
 |   |-- Poc
-|   |   `-- Index.cshtml
-|   |-- Shared
-|   |   |-- Error.cshtml
-|   |   |-- _FeedbackModal.cshtml
-|   |   |-- _Layout.cshtml
-|   |   `-- _ValidationScriptsPartial.cshtml
-|   |-- _ViewImports.cshtml
-|   `-- _ViewStart.cshtml
+|   `-- Shared
 `-- wwwroot
     |-- css
-    |   `-- styles.css
-    |-- favicon.ico
-    |-- js
-    |   `-- Vue
-    |       |-- Modal
-    |       |   `-- feedback.js
-    |       `-- Poc
-    |           `-- index.js
+    |-- dist
+    |-- img
+    |   `-- logo
     `-- lib
         |-- bootstrap
-        |   |-- dist
-        |   |   |-- css
-        |   |   |   |-- bootstrap.css
-        |   |   |   |-- bootstrap.css.map
-        |   |   |   |-- bootstrap-grid.css
-        |   |   |   |-- bootstrap-grid.css.map
-        |   |   |   |-- bootstrap-grid.min.css
-        |   |   |   |-- bootstrap-grid.min.css.map
-        |   |   |   |-- bootstrap-grid.rtl.css
-        |   |   |   |-- bootstrap-grid.rtl.css.map
-        |   |   |   |-- bootstrap-grid.rtl.min.css
-        |   |   |   |-- bootstrap-grid.rtl.min.css.map
-        |   |   |   |-- bootstrap.min.css
-        |   |   |   |-- bootstrap.min.css.map
-        |   |   |   |-- bootstrap-reboot.css
-        |   |   |   |-- bootstrap-reboot.css.map
-        |   |   |   |-- bootstrap-reboot.min.css
-        |   |   |   |-- bootstrap-reboot.min.css.map
-        |   |   |   |-- bootstrap-reboot.rtl.css
-        |   |   |   |-- bootstrap-reboot.rtl.css.map
-        |   |   |   |-- bootstrap-reboot.rtl.min.css
-        |   |   |   |-- bootstrap-reboot.rtl.min.css.map
-        |   |   |   |-- bootstrap.rtl.css
-        |   |   |   |-- bootstrap.rtl.css.map
-        |   |   |   |-- bootstrap.rtl.min.css
-        |   |   |   |-- bootstrap.rtl.min.css.map
-        |   |   |   |-- bootstrap-utilities.css
-        |   |   |   |-- bootstrap-utilities.css.map
-        |   |   |   |-- bootstrap-utilities.min.css
-        |   |   |   |-- bootstrap-utilities.min.css.map
-        |   |   |   |-- bootstrap-utilities.rtl.css
-        |   |   |   |-- bootstrap-utilities.rtl.css.map
-        |   |   |   |-- bootstrap-utilities.rtl.min.css
-        |   |   |   `-- bootstrap-utilities.rtl.min.css.map
-        |   |   `-- js
-        |   |       |-- bootstrap.bundle.js
-        |   |       |-- bootstrap.bundle.js.map
-        |   |       |-- bootstrap.bundle.min.js
-        |   |       |-- bootstrap.bundle.min.js.map
-        |   |       |-- bootstrap.esm.js
-        |   |       |-- bootstrap.esm.js.map
-        |   |       |-- bootstrap.esm.min.js
-        |   |       |-- bootstrap.esm.min.js.map
-        |   |       |-- bootstrap.js
-        |   |       |-- bootstrap.js.map
-        |   |       |-- bootstrap.min.js
-        |   |       `-- bootstrap.min.js.map
-        |   `-- LICENSE
+        |   `-- dist
+        |       |-- css
+        |       `-- js
         |-- jquery
-        |   |-- dist
-        |   |   |-- jquery.js
-        |   |   |-- jquery.min.js
-        |   |   |-- jquery.min.map
-        |   |   |-- jquery.slim.js
-        |   |   |-- jquery.slim.min.js
-        |   |   `-- jquery.slim.min.map
-        |   `-- LICENSE.txt
+        |   `-- dist
         |-- jquery-validation
-        |   |-- dist
-        |   |   |-- additional-methods.js
-        |   |   |-- additional-methods.min.js
-        |   |   |-- jquery.validate.js
-        |   |   `-- jquery.validate.min.js
-        |   `-- LICENSE.md
+        |   `-- dist
         `-- jquery-validation-unobtrusive
-            |-- dist
-            |   |-- jquery.validate.unobtrusive.js
-            |   `-- jquery.validate.unobtrusive.min.js
-            `-- LICENSE.txt
+            `-- dist
 
-39 directories, 120 files
 ```
 <!-- END STRUCTURE -->
 ---
@@ -267,4 +157,3 @@ Publicar build	dotnet publish -c Release
 👨‍💻 Autor
 Eric Marques Bighi
 [LinkedIn](https://www.linkedin.com/in/eric-bighi/) • [GitHub](https://github.com/Big2109)
-

@@ -27,6 +27,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseRequestLocalization();
+app.UseStaticFiles();
 
 app.Lifetime.ApplicationStopping.Register(() =>
 {

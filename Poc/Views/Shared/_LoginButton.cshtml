@@ -1,0 +1,11 @@
+@{
+    bool exibir = TempData["Exibir"] != null ? (bool)TempData["Exibir"] : true;
+}
+
+<script>
+    window.__USER__ = {
+        isAuthenticated: @(User.Identity.IsAuthenticated.ToString().ToLower()),
+        name: '@(User.FindFirst("Nome")?.Value ?? User.Identity.Name)',
+        show: @(exibir.ToString().ToLower())
+    };
+</script>
