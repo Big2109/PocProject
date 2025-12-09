@@ -32,9 +32,19 @@ public class ProdutoService : BaseService<Produto, ProdutoModel>, IProdutoServic
         return ServicoResultado.Ok();
     }
 
+    public async Task<ServicoResultado> EditarProduto(ProdutoModel produto)
+    {
+        produto.AtualizadoEm = DateTime.Now;
+
+        await Atualizar(produto);
+
+        return ServicoResultado.Ok();
+    }
+
     public async Task<ServicoResultado> DeletarProduto(Guid guidProduto)
     {
         var produto = await _produtoRepository.ObterPorGuid(guidProduto);
+        if (produto is null) return ServicoResultado.Falha("Erro interno");
         await _produtoRepository.Deletar(produto);
 
         return ServicoResultado.Ok();

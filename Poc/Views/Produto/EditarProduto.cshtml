@@ -12,6 +12,9 @@
                 <form asp-controller="Produto" asp-action="EditarProduto" method="post"
                     class="flex flex-col lg:flex-row gap-4 w-full max-w-4xl">
                     <div class="row">
+                        <input asp-for="GuidProduto" type="text" class="hidden" value="@Model.GuidProduto" />
+                        <input asp-for="GuidUsuario" type="text" class="hidden" value="@Model.GuidUsuario" />
+                        <input asp-for="CriadoEm" type="text" class="hidden" value="@Model.CriadoEm" />
                         <div class="flex flex-col flex-1">
                             <label asp-for="Nome">Nome</label>
                             <input asp-for="Nome" type="text" class="border p-2 rounded" value="@Model.Nome" />
@@ -25,12 +28,12 @@
 
                         <div class="flex flex-col flex-1">
                             <label asp-for="Icone">Ícone</label>
-                            <input asp-for="Icone" type="text" disabled value="@Model.Icone" />
+                            <input asp-for="Icone" type="text" value="@Model.Icone" />
                         </div>
 
                         <div class="flex flex-col flex-1">
                             <label asp-for="CorHex">Cor Hex.</label>
-                            <input asp-for="CorHex" type="text" disabled value="@Model.CorHex" />
+                            <input asp-for="CorHex" type="text" value="@Model.CorHex" />
                         </div>
 
                         <div class="flex justify-between py-4">

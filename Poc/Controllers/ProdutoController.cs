@@ -51,13 +51,13 @@ public class ProdutoController : BaseController
         if (!ModelState.IsValid)
         {
             Erro(string.Empty);
-            return RedirectToAction("CriarProduto");
+            return RedirectToAction("EditarProduto");
         }
 
-        var novo = await _produtoService.CriarProduto(produto);
-        if (!novo.Sucesso) Erro(novo.Erros.FirstOrDefault() ?? "");
+        var editado = await _produtoService.EditarProduto(produto);
+        if (!editado.Sucesso) Erro(editado.Erros.FirstOrDefault() ?? "");
+        else Sucesso($"Produto atualizado com sucesso!");
 
-        Sucesso($"Novo produto criado com sucesso!");
         return RedirectToAction("Index");
     }
 
@@ -67,6 +67,7 @@ public class ProdutoController : BaseController
         var deletado = await _produtoService.DeletarProduto(guidProduto);
         if (!deletado.Sucesso) Erro(deletado.Erros.FirstOrDefault() ?? "");
         else Sucesso("Produto deletado com sucesso!");
+
         return RedirectToAction("Index");
     }
 }
