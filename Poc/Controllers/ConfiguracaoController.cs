@@ -48,7 +48,7 @@ public class ConfiguracaoController : BaseController
             var registrar = await _usuarioService.Registrar(novoUsuario);
             if (!registrar.Sucesso)
             {
-                Erro(registrar.Mensagem.FirstOrDefault() ?? "");
+                Erro(registrar.Erros.FirstOrDefault() ?? "");
                 return View(novoUsuario);
             }
 
@@ -61,8 +61,9 @@ public class ConfiguracaoController : BaseController
     [HttpPost("deletar-usuario/{guidUsuario:guid}")]
     public async Task<IActionResult> DeletarUsuario([FromRoute] Guid guidUsuario)
     {
-        await _usuarioService.DeletarUsuario(guidUsuario);
-        Sucesso("Usuário deletado com sucesso!");
+        var deletado = await _usuarioService.DeletarUsuario(guidUsuario);
+        if (!deletado.Sucesso) Erro(deletado.Erros.FirstOrDefault() ?? "");
+        else Sucesso("Usuário deletado com sucesso!");
         return await Usuarios();
     }
 }

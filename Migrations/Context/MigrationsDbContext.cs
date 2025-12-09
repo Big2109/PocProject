@@ -64,5 +64,40 @@ public class Context : DbContext
                 .WithOne(u => u.Acesso)
                 .HasForeignKey<Acesso>(e => e.GuidUsuario);
         });
+
+        modelBuilder.Entity<Produto>(entity =>
+        {
+            entity.ToTable("Produto");
+
+            entity.HasKey(e => e.GuidProduto);
+
+            entity.Property(e => e.GuidProduto)
+                .HasColumnType("uniqueidentifier");
+
+            entity.Property(e => e.GuidUsuario)
+                .HasColumnType("uniqueidentifier");
+
+            entity.Property(e => e.Nome)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            entity.Property(e => e.Descricao)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            entity.Property(e => e.Icone)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            entity.Property(e => e.CorHex)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            entity.Property(e => e.CriadoEm)
+                .HasColumnType("datetime2");
+
+            entity.Property(e => e.AtualizadoEm)
+                .HasColumnType("datetime2");
+        });
     }
 }

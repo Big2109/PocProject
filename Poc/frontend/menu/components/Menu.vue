@@ -16,6 +16,11 @@ const menuItems: MenuItem[] = [
     icon: "fas fa-users fa-2x",
     href: "/configuracao/usuarios",
   },
+    {
+    label: "Produtos",
+    icon: "fas fa-shop fa-2x",
+    href: "/produto",
+  },
   {
     label: "Configurações",
     icon: "fas fa-cog fa-2x",

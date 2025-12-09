@@ -9,11 +9,13 @@ public class BaseService<TEntity, TModel>
 {
     protected readonly IBaseRepository<TEntity> _repository;
     protected readonly IMapper _mapper;
+    protected readonly IHttpContextAccessor _httpContextAccessor;
 
-    public BaseService(IBaseRepository<TEntity> repository, IMapper mapper)
+    public BaseService(IBaseRepository<TEntity> repository, IMapper mapper, IHttpContextAccessor httpContext)
     {
         _repository = repository;
         _mapper = mapper;
+        _httpContextAccessor = httpContext;
     }
     public async Task<List<TModel>> Listar()
     {
@@ -39,5 +41,11 @@ public class BaseService<TEntity, TModel>
     {
         var entity = _mapper.Map<TEntity>(model);
         await _repository.Deletar(entity);
+    }
+
+    public Guid ObterGuidUsuario()
+    {
+        var claim = _httpContextAccessor.HttpContext?.User?.FindFirst("GuidUsuario")?.Value;
+        return Guid.Parse(claim);
     }
 }

@@ -28,6 +28,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUsuarioService, UsuarioService>();
         services.AddScoped<IAcessoService, AcessoService>();
         services.AddScoped<IValidacaoService, ValidacaoService>();
+        services.AddScoped<IProdutoService, ProdutoService>();
         return services;
     }
 
@@ -36,6 +37,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IClienteRepository, ClienteRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddScoped<IAcessoRepository, AcessoRepository>();
+        services.AddScoped<IProdutoRepository, ProdutoRepository>();
         return services;
     }
 }

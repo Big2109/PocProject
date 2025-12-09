@@ -24,10 +24,7 @@ public class BaseController : Controller
                 .Select(s => s.Key)
                 .ToList();
         }
-        else
-        {
-            TempData["CamposInvalidos"] = new List<string>();
-        }
+        else TempData["CamposInvalidos"] = new List<string>();
 
         TempData["TipoMensagem"] = tipo;
         TempData["Mensagem"] = mensagem;

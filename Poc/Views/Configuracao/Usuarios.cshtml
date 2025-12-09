@@ -6,7 +6,7 @@
 
 @model UsuariosViewModel
 <aside class="flex h-screen ml-[240px]">
-    <div class="card-static w-full overflow-x-auto overflow-y-hidden">
+    <div class="card-static w-full overflow-x-auto overflow-y-auto">
         <div class="flex w-full justify-end mb-5">
             <a class="min-w-[160px] login-btn" onclick="window.ShowModal('NovoUsuarioModal')">
                 <span class="mr-2">
@@ -16,7 +16,7 @@
             </a>
         </div>
         <table class="text-white">
-            <thead>
+            <thead class="hidden md:table-header-group border border-gray700">
                 <tr>
                     <th>Nome</th>
                     <th>Nome de usuário</th>
@@ -26,16 +26,16 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="block md:table-row-group">
                 @foreach (var usuario in Model.Usuarios.OrderByDescending(u => u.HorarioAcesso))
                 {
-                    <tr id="@usuario.GuidUsuario">
-                        <td>@usuario.Nome</td>
-                        <td>@usuario.NomeUsuario</td>
-                        <td>@usuario.Email</td>
-                        <td>@usuario.CriadoEm.ToString("dd/MM/yyyy - HH:mm:ss")</td>
-                        <td>@usuario.HorarioAcesso.ToString("dd/MM/yyyy - HH:mm:ss")</td>
-                        <td>
+                    <tr id="@usuario.GuidUsuario" class="block md:table-row mb-4 border-t border-gray600 rounded-lg p-4">
+                        <td class="block md:table-cell">@usuario.Nome</td>
+                        <td class="block md:table-cell">@usuario.NomeUsuario</td>
+                        <td class="block md:table-cell">@usuario.Email</td>
+                        <td class="block md:table-cell">@usuario.CriadoEm.ToString("dd/MM/yyyy - HH:mm:ss")</td>
+                        <td class="block md:table-cell">@usuario.HorarioAcesso.ToString("dd/MM/yyyy - HH:mm:ss")</td>
+                        <td class="block md:table-cell">
                             @await Html.PartialAsync("_DeletarUsuarioModal", usuario.GuidUsuario)
                             <span title="Deletar usuário">
                                 <a href="#" onclick="window.ShowModal('DeletarUsuarioModal')"

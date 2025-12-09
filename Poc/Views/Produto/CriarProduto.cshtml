@@ -1,0 +1,48 @@
+@using Poc.ViewModels
+@model ProdutoModel
+
+@{
+    ViewData["Title"] = "Criar Produto";
+}
+
+<aside class="flex h-screen ml-[240px]">
+    <div class="card-static w-full">
+        <div class="flex justify-start w-full px-4 sm:px-3">
+            <div class="col">
+                <form asp-controller="Produto" asp-action="CriarProduto" method="post"
+                    class="flex flex-col lg:flex-row gap-4 w-full max-w-4xl">
+                    <div class="row">
+                        <div class="flex flex-col flex-1">
+                            <label asp-for="Nome">Nome</label>
+                            <input asp-for="Nome" type="text" class="border p-2 rounded" />
+                        </div>
+
+                        <div class="flex flex-col flex-1">
+                            <label asp-for="Descricao">Descrição</label>
+                            <input asp-for="Descricao" type="text" class="border p-2 rounded" />
+                        </div>
+
+                        <div class="flex flex-col flex-1">
+                            <label asp-for="Icone">Ícone</label>
+                            <input asp-for="Icone" type="text" />
+                        </div>
+
+                        <div class="flex flex-col flex-1">
+                            <label asp-for="CorHex">Cor Hex.</label>
+                            <input asp-for="CorHex" type="text" />
+                        </div>
+
+                        <div class="flex justify-start py-4">
+                            <button type="submit" class="login-btn bg-gray400 px-6 py-2 rounded">
+                                Criar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="IconOptionsApp"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</aside>

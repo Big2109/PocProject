@@ -9,8 +9,9 @@ namespace Poc.Services;
 public class AcessoService : BaseService<Acesso, AcessoModel>, IAcessoService
 {
     private readonly IAcessoRepository _acessoRepository;
-    public AcessoService(IAcessoRepository acessoRepository, IMapper mapper)
-        : base(acessoRepository, mapper)
+    public AcessoService(IAcessoRepository acessoRepository,
+        IMapper mapper,
+        IHttpContextAccessor httpContextAccessor) : base(acessoRepository, mapper, httpContextAccessor)
     {
         _acessoRepository = acessoRepository;
     }

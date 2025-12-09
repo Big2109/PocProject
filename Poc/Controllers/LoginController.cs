@@ -25,11 +25,9 @@ public class LoginController : BaseController
         var login = await _usuarioService.Login(usuario);
         if (!login.Sucesso)
         {
-            Erro(login.Mensagem.FirstOrDefault() ?? "");
+            Erro(login.Erros.FirstOrDefault() ?? "");
             return RedirectToAction("Index");
         }
-
-        HttpContext.Session.SetString("NomeUsuario", usuario.NomeUsuario);
 
         return RedirectToAction("Dashboard", "Poc");
     }
@@ -51,8 +49,8 @@ public class LoginController : BaseController
         var registrar = await _usuarioService.Registrar(novoUsuario);
         if (!registrar.Sucesso)
         {
-            Erro(registrar.Mensagem.FirstOrDefault() ?? "");
-            return View(novoUsuario);
+            Erro(registrar.Erros.FirstOrDefault() ?? "");
+            return RedirectToAction("Registrar");
         }
 
         Sucesso("Usuário registrado com sucesso!");

@@ -6,41 +6,53 @@ namespace Poc.Services;
 
 public class ValidacaoService : IValidacaoService
 {
-    public Task<ValidacaoModel> ValidarLoginUsuario(UsuarioModel usuario)
+
+    public async Task<ServicoResultado<UsuarioModel>> ValidarNome(UsuarioModel usuario)
     {
-        var validacao = new ValidacaoModel { Cadastro = Messages.CadastroEnum.Nulo, Mensagem = new List<string>() };
-
-        if (string.IsNullOrEmpty(usuario.NomeUsuario))
-            validacao.Mensagem.Add(Messages.PrecisaSerPreenchido("Nome do usuário ou Email"));
-        else if (string.IsNullOrEmpty(usuario.Senha))
-            validacao.Mensagem.Add(Messages.PrecisaSerPreenchido("Senha"));
-        else
-        {
-            validacao.Login = Messages.LoginEnum.Ok;
-            validacao.Sucesso = true;
-        }
-
-        return Task.FromResult(validacao);
-    }
-    public Task<ValidacaoModel> ValidarRegistroUsuario(UsuarioModel usuario)
-    {
-        var validacao = new ValidacaoModel { Cadastro = Messages.CadastroEnum.Nulo, Mensagem = new List<string>() };
-
         if (string.IsNullOrEmpty(usuario.Nome))
-            validacao.Mensagem.Add(Messages.PrecisaSerPreenchido("Nome"));
-        else if (string.IsNullOrEmpty(usuario.NomeUsuario))
-            validacao.Mensagem.Add(Messages.PrecisaSerPreenchido("Nome Usuário"));
-        else if (string.IsNullOrEmpty(usuario.Email))
-            validacao.Mensagem.Add(Messages.PrecisaSerPreenchido("Email"));
-        else if (string.IsNullOrEmpty(usuario.Senha))
-            validacao.Mensagem.Add(Messages.PrecisaSerPreenchido("Senha"));
-        else
-        {
-            validacao.Cadastro = Messages.CadastroEnum.Ok;
-            validacao.Sucesso = true;
-        }
+            return ServicoResultado<UsuarioModel>.Falha(Messages.PrecisaSerPreenchido("Nome"));
 
-        return Task.FromResult(validacao);
+        return ServicoResultado<UsuarioModel>.Ok(usuario);
     }
+    public async Task<ServicoResultado<UsuarioModel>> ValidarNomeUsuario(UsuarioModel usuario)
+    {
+        if (string.IsNullOrEmpty(usuario.NomeUsuario))
+            return ServicoResultado<UsuarioModel>.Falha(Messages.PrecisaSerPreenchido("Nome do usuário"));
 
+        return ServicoResultado<UsuarioModel>.Ok(usuario);
+    }
+    public async Task<ServicoResultado<UsuarioModel>> ValidarEmail(UsuarioModel usuario)
+    {
+        if (string.IsNullOrEmpty(usuario.Email))
+            return ServicoResultado<UsuarioModel>.Falha(Messages.PrecisaSerPreenchido("Email"));
+
+        return ServicoResultado<UsuarioModel>.Ok(usuario);
+    }
+    public async Task<ServicoResultado<UsuarioModel>> ValidarSenha(UsuarioModel usuario)
+    {
+        if (string.IsNullOrEmpty(usuario.Senha))
+            return ServicoResultado<UsuarioModel>.Falha(Messages.PrecisaSerPreenchido("Senha"));
+
+        return ServicoResultado<UsuarioModel>.Ok(usuario);
+    }
+    public async Task<ServicoResultado<UsuarioModel>> ValidarRegistroUsuario(UsuarioModel usuario)
+    {
+        var erros = new List<string>();
+
+        var nome = await ValidarNome(usuario);
+        if (!nome.Sucesso) erros.Add(nome.Erros.FirstOrDefault() ?? "");
+
+        var nomeUsuario = await ValidarNomeUsuario(usuario);
+        if (!nomeUsuario.Sucesso) erros.Add(nomeUsuario.Erros.FirstOrDefault() ?? "");
+
+        var email = await ValidarEmail(usuario);
+        if (!email.Sucesso) erros.Add(email.Erros.FirstOrDefault() ?? "");
+
+        var senha = await ValidarSenha(usuario);
+        if (!senha.Sucesso) erros.Add(senha.Erros.FirstOrDefault() ?? "");
+
+        if (erros.Any()) return ServicoResultado<UsuarioModel>.Falha(erros);
+
+        return ServicoResultado<UsuarioModel>.Ok(usuario);
+    }
 }
