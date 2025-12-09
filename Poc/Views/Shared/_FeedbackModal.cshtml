@@ -1,1 +1,8 @@
-<div id="FeedbackApp" data-tipo-mensagem="@TempData["TipoMensagem"]" data-mensagem="@TempData["Mensagem"]"></div>
+@{
+    var tipoMensagem = TempData["TipoMensagem"] as string;
+    var mensagem = TempData["Mensagem"] as string;
+
+    TempData.Remove("TipoMensagem");
+    TempData.Remove("Mensagem");
+}
+<div id="FeedbackApp" data-tipo-mensagem="@tipoMensagem" data-mensagem="@mensagem"></div>

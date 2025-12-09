@@ -52,10 +52,7 @@ export default defineComponent({
 <template>
   <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-8">
     <div class="flex lg:flex-1">
-      <a href="#" class="-m-1.5 p-1.5">
-        <span class="sr-only">Your Company</span>
-        <!-- <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="" class="h-8 w-auto" /> -->
-      </a>
+          <!-- <img src="../components/img/logotipo.gif"/> -->
     </div>
     <div class="flex lg:hidden">
       <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">

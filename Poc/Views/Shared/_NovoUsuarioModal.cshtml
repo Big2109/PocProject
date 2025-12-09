@@ -1,13 +1,15 @@
-<template>
-  <div v-if="show" class="modal">
-      <div class="card h-[450px] w-[450px] text-center">
+@using Poc.Models
+@model UsuarioModel
+
+<div id="NovoUsuarioModal" class="modal d-none">
+    <div class="card h-[470px] w-[450px] text-center">
         <div class="flex justify-end">
-          <button @click="show = false"
-                  class="top-2 right-3 text-gray400 text-xl hover:text-gray300">
-            &times;
-          </button>
+            <button onclick="window.HideModal('NovoUsuarioModal')"
+                class="top-2 right-3 text-gray400 text-xl hover:text-gray300">
+                &times;
+            </button>
         </div>
-        <form asp-controller="Login" asp-action="Registrar" method="post"
+        <form asp-controller="Configuracao" asp-action="novo-usuario" method="post"
             class="flex flex-col gap-4 w-full max-w-md mx-auto px-4 sm:px-3">
             <div class="flex flex-col">
                 <label asp-for="Nome">Nome</label>
@@ -32,22 +34,4 @@
             </div>
         </form>
     </div>
-  </div>
-</template>
-
-<script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue'
-
-const show = ref(false)
-
-onMounted(() => {
-  const appDiv = document.getElementById('NovoUsuarioApp')
-  if(!appDiv) return
-
-  const s = appDiv.dataset.show
-
-  if(s){
-    show.value = true
-  }
-})
-</script>
+</div>

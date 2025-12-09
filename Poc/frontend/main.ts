@@ -4,33 +4,29 @@ import Menu from "./menu/components/Menu.vue";
 import LandingContent from "./landing/components/LandingContent.vue";
 import Particles from "./particles/components/Particles.vue";
 import Feedback from "./modals/components/Feedback.vue";
-import Confirmacao from "./modals/components/Confirmacao.vue";
-import NovoUsuario from "./modals/components/NovoUsuario.vue";
+import ModalController from "./modals/components/ModalController.vue";
 
 import "./main.css"; // Tailwind
 
 // Header
-const headerApp = createApp(Header);
-headerApp.mount("#HeaderApp");
+const header = createApp(Header);
+header.mount("#HeaderApp");
 
 // Menu
-const menuApp = createApp(Menu);
-menuApp.mount("#MenuApp");
+const menu = createApp(Menu);
+menu.mount("#MenuApp");
 
 // Landing
-const landingApp = createApp(LandingContent);
-landingApp.mount("#LandingApp");
+const landing = createApp(LandingContent);
+landing.mount("#LandingApp");
 
 // Particles
-const particlesApp = createApp(Particles);
-particlesApp.mount("#ParticlesApp");
+const particles = createApp(Particles);
+particles.mount("#ParticlesApp");
 
 // Modals
+const modalController = createApp(ModalController);
+modalController.mount("#ModalControllerApp");
+
 const feedback = createApp(Feedback);
 feedback.mount("#FeedbackApp");
-
-const confirmacao = createApp(Confirmacao);
-confirmacao.mount("#ConfirmacaoApp");
-
-const novoUsuario = createApp(NovoUsuario);
-novoUsuario.mount("#NovoUsuarioApp");
