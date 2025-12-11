@@ -5,52 +5,56 @@
     ViewData["Title"] = "Editar Produto";
 }
 
-<aside class="flex h-screen ml-[55px] sm:ml-[70px] md:ml-[240px] lg:ml-[240px]">
-    <div class="card-static w-full">
-        <div class="w-full h-full overflow-y-auto overflow-x-auto px-10 sm:px-3 border border-gray500 rounded-xl">
-            <div class="p-5 mt-3">
+<aside class="flex h-screen ml-[70px] lg:ml-[240px]">
+    <div class="card-static w-full overflow-y-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-4 border border-gray500 rounded-xl p-4">
+            <div class="p-5 mt-3 col-span-1 md:col-span-2 lg:col-span-2">
                 <form asp-controller="Produto" asp-action="EditarProduto" method="post"
-                    class="flex flex-col lg:flex-row gap-4 w-full max-w-4xl">
-                    <div class="min-w-[300px] sm:min-w-[420px]">
+                    class="flex flex-col lg:flex-row lg:flex-wrap gap-4 w-full">
+                    <div class="w-full">
                         <input asp-for="GuidProduto" type="text" class="hidden" value="@Model.GuidProduto" />
                         <input asp-for="GuidUsuario" type="text" class="hidden" value="@Model.GuidUsuario" />
                         <input asp-for="CriadoEm" type="text" class="hidden" value="@Model.CriadoEm" />
-                        <div class="flex flex-col flex-1">
+
+                        <div class="flex flex-col">
                             <label asp-for="Nome">Nome</label>
-                            <input asp-for="Nome" type="text" class="border p-2 rounded" value="@Model.Nome" />
+                            <input asp-for="Nome" type="text" class="border p-2 rounded w-full" />
                         </div>
 
-                        <div class="flex flex-col flex-1">
+                        <div class="flex flex-col">
                             <label asp-for="Descricao">Descrição</label>
-                            <input asp-for="Descricao" type="text" class="border p-2 rounded"
-                                value="@Model.Descricao" />
+                            <input asp-for="Descricao" type="text" class="border p-2 rounded w-full" />
                         </div>
 
-                        <div class="flex flex-col flex-1">
+                        <div class="flex flex-col">
                             <label asp-for="Icone">Ícone</label>
-                            <input asp-for="Icone" type="text" value="@Model.Icone" />
+                            <input asp-for="Icone" type="text" class="border p-2 rounded w-full" />
                         </div>
 
-                        <div class="flex flex-col flex-1">
+                        <div class="flex flex-col">
                             <label asp-for="CorHex">Cor Hex.</label>
-                            <input asp-for="CorHex" type="text" value="@Model.CorHex" />
-                        </div>
-
-                        <div class="flex justify-between py-4">
-                            <span title="Deletar produto" class="mt-1">
-                                <a href="#" onclick="window.ShowModal('DeletarProdutoModal')"
-                                    class="hover:text-red-600 transition-colors">
-                                    <i class="fas fa-trash-can fa-2x"></i>
-                                </a>
-                            </span>
-                            <button type="submit" class="login-btn bg-gray400 px-6 py-2 rounded">
-                                Atualizar
-                            </button>
+                            <input asp-for="CorHex" type="text" class="border p-2 rounded w-full" />
                         </div>
                     </div>
-                    <div id="IconOptionsApp"></div>
-                    <div id="IconPreviewApp"></div>
+                    <div id="IconOptionsApp" class="mb-10 col-span-1 md:col-span-2 lg:col-span-2"></div>
+                    <div class="mb-5 col-span-2 flex justify-between w-full">
+                        <span title="Deletar produto" class="mt-1">
+                            <a href="#" onclick="window.ShowModal('DeletarProdutoModal')"
+                                class="hover:text-red-600 transition-colors">
+                                <i class="fas fa-trash-can fa-2x"></i>
+                            </a>
+                        </span>
+
+                        <button type="submit" class="login-btn bg-gray400 px-6 py-2 rounded">
+                            Atualizar
+                        </button>
+                    </div>
                 </form>
+            </div>
+
+            <div id="IconPreviewApp"
+                class="flex w-full justify-center items-center p-5 mt-[60px] col-span-1 md:col-span-2 lg:col-span-2 border border-gray500 rounded-xl p-4"
+                data-current-icon="@Model.Icone" data-current-color="@Model.CorHex" data-current-name="@Model.Nome">
             </div>
         </div>
     </div>

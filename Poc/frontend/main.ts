@@ -6,7 +6,7 @@ import Particles from "./particles/components/Particles.vue";
 import Feedback from "./modals/components/Feedback.vue";
 import ModalController from "./modals/components/ModalController.vue";
 import CriarProdutoOptions from "./extensions/components/CriarProdutoOptions.vue";
-import PreviewApp from "./extensions/components/PreviewApp.vue";
+import PreviaProduto from "./extensions/components/PreviaProduto.vue";
 
 import "./main.css"; // Tailwind
 
@@ -37,5 +37,5 @@ feedback.mount("#FeedbackApp");
 const criarProdutoOptions = createApp(CriarProdutoOptions);
 criarProdutoOptions.mount("#IconOptionsApp");
 
-const preview = createApp(PreviewApp);
-preview.mount("#IconPreviewApp");
+const previaProduto = createApp(PreviaProduto);
+previaProduto.mount("#IconPreviewApp");

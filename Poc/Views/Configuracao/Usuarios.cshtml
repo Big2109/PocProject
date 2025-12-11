@@ -5,49 +5,52 @@
 }
 
 @model UsuariosViewModel
-<aside class="flex h-screen ml-[240px]">
+<aside class="flex h-screen ml-[70px] lg:ml-[240px]">
     <div class="card-static w-full overflow-x-auto overflow-y-auto">
-        <div class="flex w-full justify-end mb-5">
-            <a class="min-w-[160px] login-btn" onclick="window.ShowModal('NovoUsuarioModal')">
-                <span class="mr-2">
-                    <i class="fas fa-user-plus"></i>
-                </span>
-                Novo usuário
-            </a>
-        </div>
-        <table class="text-white">
-            <thead class="hidden md:table-header-group border border-gray700">
-                <tr>
-                    <th>Nome</th>
-                    <th>Nome de usuário</th>
-                    <th>Email</th>
-                    <th>Criado em</th>
-                    <th>Último acesso</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody class="block md:table-row-group">
-                @foreach (var usuario in Model.Usuarios.OrderByDescending(u => u.HorarioAcesso))
-                {
-                    <tr id="@usuario.GuidUsuario" class="block md:table-row mb-4 border-t border-gray600 rounded-lg p-4">
-                        <td class="block md:table-cell">@usuario.Nome</td>
-                        <td class="block md:table-cell">@usuario.NomeUsuario</td>
-                        <td class="block md:table-cell">@usuario.Email</td>
-                        <td class="block md:table-cell">@usuario.CriadoEm.ToString("dd/MM/yyyy - HH:mm:ss")</td>
-                        <td class="block md:table-cell">@usuario.HorarioAcesso.ToString("dd/MM/yyyy - HH:mm:ss")</td>
-                        <td class="block md:table-cell">
-                            @await Html.PartialAsync("_DeletarUsuarioModal", usuario.GuidUsuario)
-                            <span title="Deletar usuário">
-                                <a href="#" onclick="window.ShowModal('DeletarUsuarioModal')"
-                                    class="hover:text-red-600 transition-colors">
-                                    <i class="fas fa-trash-can"></i>
-                                </a>
-                            </span>
-                        </td>
+        <div class="border border-gray600 rounded-xl">
+            <div class="flex w-full justify-end mb-5">
+                <a class="min-w-[160px] login-btn" onclick="window.ShowModal('NovoUsuarioModal')">
+                    <span class="mr-2">
+                        <i class="fas fa-user-plus"></i>
+                    </span>
+                    Novo usuário
+                </a>
+            </div>
+            <table class="text-white">
+                <thead class="hidden md:table-header-group border border-gray700">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Nome de usuário</th>
+                        <th>Email</th>
+                        <th>Criado em</th>
+                        <th>Último acesso</th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="block md:table-row-group">
+                    @foreach (var usuario in Model.Usuarios.OrderByDescending(u => u.HorarioAcesso))
+                    {
+                        <tr id="@usuario.GuidUsuario"
+                            class="block md:table-row mb-4 border-t border-gray600 rounded-lg p-4">
+                            <td class="block md:table-cell">@usuario.Nome</td>
+                            <td class="block md:table-cell">@usuario.NomeUsuario</td>
+                            <td class="block md:table-cell">@usuario.Email</td>
+                            <td class="block md:table-cell">@usuario.CriadoEm.ToString("dd/MM/yyyy - HH:mm:ss")</td>
+                            <td class="block md:table-cell">@usuario.HorarioAcesso.ToString("dd/MM/yyyy - HH:mm:ss")</td>
+                            <td class="block md:table-cell">
+                                @await Html.PartialAsync("_DeletarUsuarioModal", usuario.GuidUsuario)
+                                <span title="Deletar usuário">
+                                    <a href="#" onclick="window.ShowModal('DeletarUsuarioModal')"
+                                        class="hover:text-red-600 transition-colors">
+                                        <i class="fas fa-trash-can"></i>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </aside>
 

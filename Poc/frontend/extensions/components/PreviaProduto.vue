@@ -1,32 +1,47 @@
 <template>
-  <div class="w-full">
-    <h2 class="text-center">Prévia</h2>
-    <ul class="flex space-x-4 py-4">
-      <li class="card-produto text-center mt-4">
-        <i
-          v-if="icon"
-          :class="[icon, 'fa-5x']"
-          :style="{ color }"
-        ></i>
-        <p v-if="icon" class="mt-3">
-          <strong>Ícone:</strong> {{ icon }}<br>
-          <strong>Cor:</strong> {{ color }}
-        </p>
-        <div v-else class="text-gray-400 mt-6">
-          <i class="fas fa-info-circle fa-3x mb-2 opacity-50"></i>
-          <p>Selecione um ícone</p>
-        </div>
-      </li>
-      <li>
-        <div class="card-produto text-center mt-4"></div>
-      </li>
-    </ul>
-</div>
+    <div v-if="color"
+    class="card-produto text-center m-4 !w-[350px] !h-[350px] transition-all duration-300"
+    @mouseenter="hover = true"
+    @mouseleave="hover = false"
+    :style="{
+      border: hover ? '3px solid ' + color : '2px solid transparent',
+      color: color
+    }">
+      <h3 class="text-5xl pb-4" v-if="name"
+        :style="{ color }">{{name}}</h3>
+      <i
+        v-if="icon"
+        :class="[icon, 'fa-8x']"
+        :style="{ color }"></i>
+      <p v-if="icon" class="mt-3"></p>
+      <div v-else class="text-gray-400 mt-6">
+        <i class="fas fa-info-circle fa-3x mb-2 opacity-50"></i>
+        <p>Selecione um ícone</p>
+      </div>
+    </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  icon: string
-  color: string
-}>();
+import { ref, onMounted } from "vue";
+
+const hover = ref(false);
+
+const name = ref("");
+const icon = ref("");
+const color = ref("");
+
+onMounted(() => {
+  const appDiv = document.getElementById("IconPreviewApp");
+  if (appDiv) {
+    name.value = appDiv.getAttribute("data-current-name") || "";
+    icon.value = appDiv.getAttribute("data-current-icon") || "";
+    color.value = appDiv.getAttribute("data-current-color") || "";
+  }
+});
+
+window.addEventListener("update-product", (e: any) => {
+  name.value = e.detail.name;
+  icon.value = e.detail.icon;
+  color.value = e.detail.color;
+});
 </script>

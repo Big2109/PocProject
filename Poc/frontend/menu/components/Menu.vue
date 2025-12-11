@@ -35,7 +35,7 @@ const menuItems: MenuItem[] = [
 </script>
 
 <template>
-  <div class="absolute flex h-screen">
+  <div class="absolute flex h-screen z-10">
     <aside
       class="group bg-gray600 text-white py-3 space-y-4
              w-[70px] hover:w-[240px] transition-all duration-300 overflow-hidden">

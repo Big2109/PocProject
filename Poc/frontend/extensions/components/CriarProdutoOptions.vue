@@ -1,9 +1,8 @@
 <template>
-  <div class="lg:min-w-[350px] p-5">
     <h2 class="text-lg font-semibold my-6">Escolha um ícone:</h2>
 
     <!-- Ícones -->
-    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-5">
       <div
         v-for="icon in icons"
         :key="icon"
@@ -24,21 +23,20 @@
     <h2 class="text-lg font-semibold my-6">Escolha uma cor:</h2>
 
     <!-- Cores -->
-    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-5">
       <div
         v-for="color in colors"
         :key="color"
         :style="{ backgroundColor: color }"
-        class="w-12 h-12 rounded-lg cursor-pointer border-2 transition-all transform hover:scale-110 duration-200"
+        class="w-12 h-12 mx-auto rounded-lg cursor-pointer border-2 transform hover:scale-110 duration-200 transition-all"
         :class="selectedColor === color ? 'border-black scale-110' : 'border-transparent'"
         @click="selectColor(color)">
       </div>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 const icons = [
   'fas fa-gears',
@@ -54,8 +52,16 @@ const colors = [
   '#60A5FA', '#A78BFA', '#F472B6'
 ];
 
+const selectedName = ref('');
 const selectedIcon = ref('');
 const selectedColor = ref('');
+
+function selectName(name: string) {
+  selectedName.value = name;
+
+  const input = document.querySelector<HTMLInputElement>('input[name="Nome"]');
+  if (input) input.value = name;
+}
 
 function selectIcon(icon: string) {
   selectedIcon.value = icon;
@@ -71,12 +77,18 @@ function selectColor(color: string) {
   if (input) input.value = color;
 }
 
-watch([selectedIcon, selectedColor], ([icon, color]) => {
+watch([selectedName, selectedIcon, selectedColor], ([name, icon, color ]) => {
   window.dispatchEvent(
     new CustomEvent("update-product", {
-      detail: { icon, color }
+      detail: { name, icon, color }
     })
   );
+});
+
+document.addEventListener("input", (e: any) => {
+  if (e.target?.name === "Nome") {
+    selectName(e.target.value);
+  }
 });
 
 </script>
