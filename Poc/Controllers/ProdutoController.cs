@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Poc.Models;
 using Poc.Services.Interfaces;
 using Poc.ViewModels;
 

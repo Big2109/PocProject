@@ -1,20 +1,21 @@
+
 using Microsoft.AspNetCore.Mvc;
+using Poc.Services.Interfaces;
 
 namespace Poc.Controllers;
 
 public class PocController : BaseController
 {
-    public PocController(ILogger<LoginController> logger) : base(logger) { }
-
-    public IActionResult Index()
+    private readonly IResumoService _resumoService;
+    public PocController(ILogger<LoginController> logger,
+        IResumoService resumoService) : base(logger)
     {
-        TempData.Keep();
-        return View();
+        _resumoService = resumoService;
     }
 
-    public IActionResult Dashboard()
+    public async Task<IActionResult> Index()
     {
-        TempData.Keep();
-        return View();
+        var resumoViewModel = await _resumoService.CalcularTotais();
+        return View("Index", resumoViewModel);
     }
 }

@@ -9,7 +9,7 @@ const menuItems: MenuItem[] = [
     {
     label: "Dashboard",
     icon: "fas fa-chart-pie fa-2x",
-    href: "/poc/dashboard",
+    href: "/poc/index",
   },
   {
     label: "Usuários",

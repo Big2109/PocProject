@@ -1,4 +1,17 @@
 @using Poc.Models
+@using Poc.ViewModels
 @{
-    ViewData["Title"] = "Poc";
+    ViewData["Title"] = "Dashboard";
 }
+
+@model ResumoViewModel
+
+<aside class="flex h-screen ml-[70px] lg:ml-[240px]">
+    <div class="card-static w-full overflow-x-auto overflow-y-auto">
+        <div class="border border-gray600 rounded-xl">
+            <div class="card">
+                <h2>Usuários</h2>
+            </div>
+        </div>
+    </div>
+</aside>
