@@ -10,7 +10,16 @@
     <div class="card-static w-full overflow-x-auto overflow-y-auto">
         <div class="border border-gray600 rounded-xl">
             <div class="card">
-                <h2>Usuários</h2>
+                <h2 class="text-center py-2">Usuários criados</h2>
+                <div id="UsuariosChart" data-labels='@Json.Serialize(Model.Usuarios.Select(u => u.CriadoEm))'
+                    data-values='@Json.Serialize(Model.Usuarios.Select(u => u.Quantidade))' data-labeltext="Usuários"
+                    class="chart-border">
+                </div>
+                <h2 class="text-center py-2">Produtos criados</h2>
+                <div id="ProdutosChart" data-labels='@Json.Serialize(Model.Produtos.Select(u => u.CriadoEm))'
+                    data-values='@Json.Serialize(Model.Produtos.Select(u => u.Quantidade))' data-labeltext="Produtos"
+                    class="chart-border">
+                </div>
             </div>
         </div>
     </div>
