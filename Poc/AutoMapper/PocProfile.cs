@@ -31,6 +31,7 @@ public class PocProfile : Profile
         CreateMap<Acesso, AcessoModel>()
         .ForMember(a => a.GuidUsuario, opt => opt.MapFrom(am => am.GuidUsuario))
         .ForMember(a => a.HorarioAcesso, opt => opt.MapFrom(am => am.HorarioAcesso))
+        .ForMember(a => a.Ativo, opt => opt.MapFrom(am => am.Ativo))
         .ReverseMap();
     }
     private void ProdutoMap()

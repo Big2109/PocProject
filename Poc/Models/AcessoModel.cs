@@ -4,4 +4,5 @@ public class AcessoModel
 {
     public Guid GuidUsuario { get; set; }
     public DateTime HorarioAcesso { get; set; }
+    public bool Ativo { get; set; }
 }

@@ -7,5 +7,6 @@ public class Acesso
     [Key]
     public Guid GuidUsuario { get; set; }
     public DateTime HorarioAcesso { get; set; }
+    public bool Ativo { get; set; }
     public Usuario Usuario { get; set; }
 }
