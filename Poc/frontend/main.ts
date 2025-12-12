@@ -7,6 +7,8 @@ import Feedback from "./modals/components/Feedback.vue";
 import ModalController from "./modals/components/ModalController.vue";
 import CriarProdutoOptions from "./extensions/components/CriarProdutoOptions.vue";
 import PreviaProduto from "./extensions/components/PreviaProduto.vue";
+import UsuariosChart from "./charts/components/UsuariosChart.vue"
+import ProdutosChart from "./charts/components/ProdutosChart.vue"
 
 import "./main.css"; // Tailwind
 
@@ -39,3 +41,7 @@ criarProdutoOptions.mount("#IconOptionsApp");
 
 const previaProduto = createApp(PreviaProduto);
 previaProduto.mount("#IconPreviewApp");
+
+//Charts
+createApp(UsuariosChart).mount("#UsuariosChart")
+createApp(ProdutosChart).mount("#ProdutosChart")

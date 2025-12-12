@@ -29,7 +29,7 @@ public class LoginController : BaseController
             return RedirectToAction("Index");
         }
 
-        return RedirectToAction("Dashboard", "Poc");
+        return RedirectToAction("Index", "Poc");
     }
     public IActionResult Registrar()
     {

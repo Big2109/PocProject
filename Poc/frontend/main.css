@@ -47,11 +47,15 @@ table {
 }
 
 th {
-    @apply p-3 border-b border-gray400 text-gray400;
+    @apply p-3 border-b border-blue text-blue;
 }
 
 td {
     @apply text-center p-4 border-b border-gray300 text-gray300;
+}
+
+.chart-border {
+    @apply border border-blue rounded-xl bg-gray600 p-5;
 }
 
 @layer base {

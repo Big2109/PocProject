@@ -29,6 +29,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAcessoService, AcessoService>();
         services.AddScoped<IValidacaoService, ValidacaoService>();
         services.AddScoped<IProdutoService, ProdutoService>();
+        services.AddScoped<IResumoService, ResumoService>();
         return services;
     }
 
