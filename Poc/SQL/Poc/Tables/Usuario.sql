@@ -8,5 +8,6 @@ CREATE TABLE [dbo].[Usuario] (
     [Senha]         NVARCHAR (100)   NULL,
     [CriadoEm]      DATETIME         NULL,
     [HorarioAcesso] DATETIME         NULL,
+    [Ativo]         BIT              NULL,
     PRIMARY KEY CLUSTERED ([GuidUsuario] ASC)
 );

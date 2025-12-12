@@ -32,29 +32,18 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
         if (!senha.Sucesso) return senha;
 
         var login = await _usuarioRepository.ObterPorNomeUsuarioESenha(_mapper.Map<Usuario>(usuario));
-        if (login == null) return ServicoResultado<UsuarioModel>.Falha("Senha ou usuário incorreto(s).");
+        if (login is null) return ServicoResultado<UsuarioModel>.Falha("Senha ou usuário incorreto(s).");
 
+        if (!login.Ativo) return ServicoResultado<UsuarioModel>.Falha("Usuário inativo.");
 
-        var now = DateTime.Now;
-        if (login.Acesso == null)
+        var acesso = new AcessoModel
         {
-            var acesso = await _acessoService.ObterPorGuidUsuario(login.GuidUsuario);
-            if (acesso != null)
-            {
-                login.Acesso = _mapper.Map<Acesso>(acesso);
-                await _acessoService.Atualizar(acesso);
-            }
+            GuidAcesso = Guid.NewGuid(),
+            GuidUsuario = login.GuidUsuario,
+            HorarioAcesso = DateTime.Now
+        };
 
-            else await _acessoService.Inserir(
-                new AcessoModel
-                {
-                    GuidUsuario = login.GuidUsuario,
-                    HorarioAcesso = now
-                });
-        }
-
-        login.HorarioAcesso = now;
-        await _usuarioRepository.Atualizar(login);
+        await _acessoService.Inserir(acesso);
 
         var claims = new List<Claim>
             {
@@ -86,7 +75,7 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
         if (!validar.Sucesso) return validar;
 
         var nomeUsuario = await _usuarioRepository.ObterPorNomeUsuario(_mapper.Map<Usuario>(novoUsuario));
-        if (nomeUsuario != null) return ServicoResultado<UsuarioModel>.Falha("Nome de usuário já em uso.");
+        if (nomeUsuario is not null) return ServicoResultado<UsuarioModel>.Falha("Nome de usuário já em uso.");
 
         var novo = await Inserir(novoUsuario);
 
@@ -98,12 +87,25 @@ public class UsuarioService : BaseService<Usuario, UsuarioModel>, IUsuarioServic
 
         return ServicoResultado<UsuarioModel>.Ok(novo);
     }
+
+    public async Task<ServicoResultado> InativarUsuario(Guid guidUsuario)
+    {
+        var usuario = await _usuarioRepository.ObterPorGuid(guidUsuario);
+        if (usuario is null) return ServicoResultado.Falha("Erro ao obter acesso");
+
+        usuario.Ativo = false;
+        await _usuarioRepository.Atualizar(usuario);
+
+        return ServicoResultado.Ok();
+    }
     public async Task<ServicoResultado> DeletarUsuario(Guid guidUsuario)
     {
         var acesso = await _acessoService.ObterPorGuidUsuario(guidUsuario);
-        if (acesso is not null) await _acessoService.Deletar(acesso);
+        if (acesso is null) return ServicoResultado.Falha("Erro ao obter acesso");
+        await _acessoService.Deletar(acesso);
 
         var usuario = await _usuarioRepository.ObterPorGuid(guidUsuario);
+        if (usuario is null) return ServicoResultado.Falha("Erro ao obter usuário");
         await _usuarioRepository.Deletar(usuario);
 
         return ServicoResultado.Ok();

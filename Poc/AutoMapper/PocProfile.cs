@@ -23,15 +23,16 @@ public class PocProfile : Profile
         .ForMember(u => u.Senha, opt => opt.MapFrom(um => um.Senha))
         .ForMember(u => u.CriadoEm, opt => opt.MapFrom(um => um.CriadoEm))
         .ForMember(u => u.HorarioAcesso, opt => opt.MapFrom(um => um.HorarioAcesso))
+        .ForMember(a => a.Ativo, opt => opt.MapFrom(am => am.Ativo))
         .ReverseMap();
     }
 
     private void AcessoMap()
     {
         CreateMap<Acesso, AcessoModel>()
+        .ForMember(a => a.GuidAcesso, opt => opt.MapFrom(am => am.GuidAcesso))
         .ForMember(a => a.GuidUsuario, opt => opt.MapFrom(am => am.GuidUsuario))
         .ForMember(a => a.HorarioAcesso, opt => opt.MapFrom(am => am.HorarioAcesso))
-        .ForMember(a => a.Ativo, opt => opt.MapFrom(am => am.Ativo))
         .ReverseMap();
     }
     private void ProdutoMap()

@@ -1,25 +1,19 @@
-using System.ComponentModel;
-using System.Linq.Expressions;
-
 namespace Poc.Enums;
 
 public class Messages
 {
-    public enum LoginEnum
+
+    public static class Usuario
     {
-        [Description("Ok")]
-        Ok = 1
+        public static string RegistradoComSucesso = "";
+        public static string SenhaOuUsuarioincorreto = "Senha ou usuário incorreto(s).";
+        public static string UsuarioInativo = "Usuário inativo.";
+        public static string NomeUsuarioJaEmUso = "Nome de usuário já em uso.";
     }
-
-    public enum CadastroEnum
+    public static class Acesso
     {
-        [Description("Ok")]
-        Ok = 1,
-
-        [Description("Nulo")]
-        Nulo = 2
+        public static string ErroObter = "Erro ao obter acesso";
     }
-
     public static string PrecisaSerPreenchido(string expressao)
     {
         return $"O campo {expressao} não pode ser vazio!";

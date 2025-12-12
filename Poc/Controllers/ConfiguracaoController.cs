@@ -58,6 +58,15 @@ public class ConfiguracaoController : BaseController
         return RedirectToAction("Usuarios");
     }
 
+    [HttpPost("inativar-usuario/{guidUsuario:guid}")]
+    public async Task<IActionResult> InativarUsuario([FromRoute] Guid guidUsuario)
+    {
+        var inativado = await _usuarioService.InativarUsuario(guidUsuario);
+        if (!inativado.Sucesso) Erro(inativado.Erros.FirstOrDefault() ?? "");
+        else Sucesso("Usuário inativado com sucesso!");
+        return await Usuarios();
+    }
+
     [HttpPost("deletar-usuario/{guidUsuario:guid}")]
     public async Task<IActionResult> DeletarUsuario([FromRoute] Guid guidUsuario)
     {

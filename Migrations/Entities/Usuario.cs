@@ -9,6 +9,7 @@ public class Usuario
     public string Senha { get; set; }
     public DateTime CriadoEm { get; set; }
     public DateTime HorarioAcesso { get; set; }
+    public bool Ativo { get; set; }
     public Acesso Acesso { get; set; }
 
 }
