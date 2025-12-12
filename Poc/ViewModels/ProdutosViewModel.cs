@@ -1,3 +1,5 @@
+using Poc.Models;
+
 namespace Poc.ViewModels;
 
 public class ProdutosViewModel

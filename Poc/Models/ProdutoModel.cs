@@ -1,3 +1,5 @@
+namespace Poc.Models;
+
 public class ProdutoModel
 {
     public Guid GuidUsuario { get; set; }
